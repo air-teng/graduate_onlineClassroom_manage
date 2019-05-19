@@ -21,7 +21,7 @@
   
   <!-- Custom styles for this template-->
   <link th:href="@{/course/css/sb-admin.css}" href="../static/course/css/sb-admin.css" rel="stylesheet"/>
-  <link th:href="@{/css/classroom.css}" href="../static/css/classroom.css" rel="stylesheet"/>
+  <link th:href="@{/css/classroom-resource.css}" href="../static/css/classroom-resource.css" rel="stylesheet"/>
  
   <script th:inline="javascript">
 	var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
@@ -71,118 +71,91 @@
               <table class="table table-bordered" id="classroom-source-list" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>序号</th>
-                    <th>资料名称</th>
-                    <th>类型</th>
-                    <th>上传时间</th>
-                    <th>上传人</th>
-                    <th>操作</th>
+                   		<th>序号</th>
+        				<th>资料名</th>
+        				<th>类型</th>
+        				<th>文件大小</th>
+        				<th>资料介绍</th>
+        				<th>上传日期</th>
+        				<th>上传人</th>
+        				<th>操作</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                  	<th>序号</th>
-                    <th>资料名称</th>
-                    <th>类型</th>
-                    <th>上传时间</th>
-                    <th>上传人</th>
-                    <th>操作</th>
+	                  	<th>序号</th>
+        				<th>资料名</th>
+        				<th>类型</th>
+        				<th>文件大小</th>
+        				<th>资料介绍</th>
+        				<th>上传日期</th>
+        				<th>上传人</th>
+        				<th>操作</th>
                   </tr>
                 </tfoot>
                 <tbody>
-                   <tr>
-                    <th>1</th>
-                    <th>JavaScript DOM编程艺术（中文第二版）.pdf</th>
-                    <th>PDF</th>
-                    <th>2019-5-17 16:20</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>2</th>
-                    <th>JavaScript参考书籍.xls</th>
-                    <th>Excel</th>
-                    <th>2019-5-17 16:22</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>3</th>
-                    <th>JavaScript DOM编程艺术（中文第二版）.pdf</th>
-                    <th>PDF</th>
-                    <th>2019-5-17 16:25</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>4</th>
-                    <th>JavaScript课件.ppt</th>
-                    <th>PPT</th>
-                    <th>2019-5-17 16:30</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>5</th>
-                    <th>JavaScript讲义.word</th>
-                    <th>WORD</th>
-                    <th>2019-5-17 16:32</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>6</th>
-                    <th>JavaScript第二讲课件.ppt</th>
-                    <th>PPT</th>
-                    <th>2019-5-17 17:20</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>7</th>
-                    <th>JavaScript第三讲课件.ppt</th>
-                    <th>PPT</th>
-                    <th>2019-5-17 17:22</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>8</th>
-                    <th>JavaScript第四讲课件.ppt</th>
-                    <th>PPT</th>
-                    <th>2019-5-18 14:20</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>9</th>
-                    <th>JavaScript第四讲课件.ppt</th>
-                    <th>PPT</th>
-                    <th>2019-5-18 14:25</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>10</th>
-                    <th>JavaScript第五讲课件.ppt</th>
-                    <th>PPT</th>
-                    <th>2019-5-19 14:30</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                   <tr>
-                    <th>11</th>
-                    <th>JavaScript第六讲课件.ppt</th>
-                    <th>PPT</th>
-                    <th>2019-5-19 14:35</th>
-                    <th>刘亦菲</th>
-                    <th><a href="download">下载</a></th>
-                  </tr>
-                </tbody>
+             			<tr>
+             				<td>1</td>
+             				<td>课件.ppt</td>
+             				<td>PPT</td>
+             				<td>183KB</td>
+             				<td>上课用的课件</td>
+             				<td>2019-5-15 16:50</td>
+             				<td>刘亦菲</td>
+             				<td><a title="预览"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>&nbsp;&nbsp;<a title="下载"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a></td>
+             			</tr>
+             			<tr>
+             				<td>2</td>
+             				<td>课程讲义.doc</td>
+             				<td>Word</td>
+             				<td>183KB</td>
+             				<td>上课用的课件</td>
+             				<td>2019-5-16 14:00</td>
+             				<td>刘亦菲</td>
+             				<td><a title="预览"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>&nbsp;&nbsp;<a title="下载"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a></td>
+             			</tr>
+             			<tr>
+             				<td>3</td>
+             				<td>高校在线备课及课堂互动系统设计与实现.pdf</td>
+             				<td>PDF</td>
+             				<td>183KB</td>
+             				<td>影视剧名单</td>
+             				<td>2019-5-16 14:20</td>
+             				<td>刘亦菲</td>
+             				<td><a title="预览"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>&nbsp;&nbsp;<a title="下载"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a></td>
+             			</tr>
+             			<tr>
+             				<td>4</td>
+             				<td>影视剧名单.xls</td>
+             				<td>Excel</td>
+             				<td>183KB</td>
+             				<td>影视剧名单</td>
+             				<td>2019-5-16 14:25</td>
+             				<td>刘亦菲</td>
+             				<td><a title="预览"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>&nbsp;&nbsp;<a title="下载"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a></td>
+             			</tr>
+             			<tr>
+             				<td>5</td>
+             				<td>学生名单.xlxs</td>
+             				<td>Excel</td>
+             				<td>183KB</td>
+             				<td>学生名单学生名单学生名单学生名单学生名单</td>
+             				<td>2019-5-16 14:30</td>
+             				<td>刘亦菲</td>
+             				<td><a title="预览"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>&nbsp;&nbsp;<a title="下载"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a></td>
+             			</tr>
+             		</tbody>
               </table>
             </div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          <div th:if="${session.userPermission!=null and session.userPermission.identificationCode ge 2} ">
+      			<div id="source-upload-div">
+      				资料选择<input type="file" id="learning_resource"></input><br/>
+      				资料介绍<br/><textarea cols="30" rows="3" id="resource_introduction"></textarea><br/>
+      				<button id="source-upload-confirm" style="margin-left:45%;">上传</button>
+      			</div>
+      		</div>
         </div>
 
         <p class="small text-center text-muted my-5">
@@ -245,11 +218,12 @@
   <script th:src="@{/course/js/sb-admin.min.js}" src="../static/course/js/sb-admin.min.js"></script>
 
   <!-- Demo scripts for this page-->
-  <script th:src="@{/course/js/demo/datatables-demo.js}" src="../static/course/js/demo/datatables-demo.js"></script>
   <!-- 自定义js -->
+  <script th:src="@{/js/classroom-onLine.js}" src="../static/js/classroom-onLine.js"></script>
   <script th:src="@{/js/classroom.js}" src="../static/js/classroom.js"></script>
   <script th:src="@{/js/operationClassroom.js}" src="../static/js/operationClassroom.js"></script>
   <script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+  <script th:src="@{/js/classroom-resource.js}" src="../static/js/classroom-resource.js"></script>
 </body>
 
 </html>

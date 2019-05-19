@@ -1,0 +1,49 @@
+/*资料信息显示*/
+/*总体设置*/
+#classroom-source-list th{
+	width:200px;
+}
+/*个性化设置*/
+#classroom-source-list thead tr th:nth-child(1){
+	width:50px;
+}
+#classroom-source-list tfoot tr th:nth-child(1){
+	width:50px;
+}
+#classroom-source-list thead tr th:nth-child(2){
+	width:400px;
+}
+#classroom-source-list tfoot tr th:nth-child(2){
+	width:400px;
+}
+#classroom-source-list thead tr th:nth-child(5){
+	width:400px;
+}
+#classroom-source-list tfoot tr th:nth-child(5){
+	width:400px;
+}
+#classroom-source-list a{
+	cursor:pointer;
+}
+/*资料上传*/
+#source-upload-div{
+	margin-left:2em;
+	font-size:16px;
+}
+#source-upload-div input{
+	margin-left:1em;
+	margin-top:1em;
+}
+#source-upload-div textarea{
+	margin-left:5em;
+}
+/*资料列表操作*/
+#classroom-source-list [class~="fa"]{
+	color:#007bff;
+}
+#classroom-source-list [class~="fa"]:hover,[class~="fa"]:focus{
+	color:#005580;
+}
+#classroom-source-list [class~="fa"]:visited{
+	color:#005580;
+}
