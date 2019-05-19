@@ -18,7 +18,7 @@ function bindSourceOperationClick(){
         formData.append("learningResource", document.getElementById("learning_resource").files[0]); 
         formData.append("resourceIntroduction",$("#resource_introduction").val());
         $.ajax({
-            url: "sourceUpload",
+            url: "classroom/-1/sourceUpload",
             type: "POST",
             data: formData,
             /**
@@ -47,7 +47,7 @@ function bindSourceOperationClick(){
 }
 function preInitResourceTable(){
 	$.ajax({
-		url:"getResourceInfo",
+		url:"classroom/-1/getResourceInfo",
 		type:"post",
 		success:function(res){
 			if(res.status == "true"){
@@ -92,14 +92,15 @@ function initResourceTable(resourceInfoList){
 		if(resourceInfoList[i].resourceType == "Word" ||
 		   resourceInfoList[i].resourceType == "PPT" ||
 		   resourceInfoList[i].resourceType == "Excel" ||
-			resourceInfoList[i].resourceType == "TEXT"){//只提供对Word,PPT,Excel和text的预览
+		   resourceInfoList[i].resourceType == "TEXT" ||
+		   resourceInfoList[i].resourceType == "Picture" ){//只提供对Word,PPT,Excel和text的预览
 			trElem += '<a title="预览" data-source-id='+resourceInfoList[i].sourceId+'><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>';
 		}
 				
 		if(parseInt(userPermission.identificationCode) >= 2){
-			trElem += '&nbsp;&nbsp;<a title="下载" href="sourceDownload?sourceId='+resourceInfoList[i].sourceId+'"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a>&nbsp;&nbsp;<a title="删除" onclick="deleteResource('+resourceInfoList[i].sourceId+')"><i class="fa fa-trash-o fa-fw" aria-hidden="true"><span class="hidden"></span></i></a>';
+			trElem += '&nbsp;&nbsp;<a title="下载" href="classroom/-1/sourceDownload?sourceId='+resourceInfoList[i].sourceId+'"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a>&nbsp;&nbsp;<a title="删除" onclick="deleteResource('+resourceInfoList[i].sourceId+')"><i class="fa fa-trash-o fa-fw" aria-hidden="true"><span class="hidden"></span></i></a>';
 		}else{
-			trElem += '&nbsp;&nbsp;<a title="下载" href="sourceDownload?sourceId='+resourceInfoList[i].sourceId+'"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a>';
+			trElem += '&nbsp;&nbsp;<a title="下载" href="classroom/-1/sourceDownload?sourceId='+resourceInfoList[i].sourceId+'"><i class="fa fa-download" aria-hidden="true"><span class="hidden"></span></i></a>';
 		}
 		
 		trElem += '</td></tr>';
@@ -113,7 +114,7 @@ function deleteResource(sourceId){
 		return ;
 	}
 	$.ajax({
-		url:"sourceDelete",
+		url:"classroom/-1/sourceDelete",
 		data:{"sourceId":sourceId},
 		type:"post",
 		success:function(res){
