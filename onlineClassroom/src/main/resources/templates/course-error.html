@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Tables</title>
+        <!-- Bootstrap -->
+        <link th:href="@{/info/bootstrap/css/bootstrap.min.css}" href="../static/info/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/info/bootstrap/css/bootstrap-responsive.min.css}" href="../static/info/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/info/assets/styles.css}" href="../static/info/assets/styles.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
+        <link th:href="@{/info/assets/DT_bootstrap.css}" href="../static/info/assets/DT_bootstrap.css" rel="stylesheet" media="screen"/>
+        <script th:src="@{/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js}" src="../static/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script th:inline="javascript">
+			var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
+			if(userPermission == null){
+				var href_path = window.location.href;
+				window.location.href = href_path.split("/")[0]+"//"+href_path.split("/")[2];
+			}
+			var courseCodeFromSession = [[${session.courseCode}]];//从session中获取课堂代码
+		</script>
+    </head>
+    
+    <body>
+        <div th:replace="common/info-course-common :: info-course-top"></div>
+        <div class="container-fluid">
+        
+            <div class="row-fluid">
+                <div th:replace="common/info-course-common :: info-course-nav"></div>
+                <!--/span-->
+                <div class="span9" id="content">
+						请求出错！
+                </div>
+            </div>
+            <hr/>
+            <footer>
+                <p>&copy; Vincent Gabriel 2013</p>
+            </footer>
+        </div>
+        <!--/.fluid-container-->
+
+        <script th:src="@{/info/vendors/jquery-1.9.1.js}" src="../static/info/vendors/jquery-1.9.1.js"></script>
+        <script th:src="@{/info/bootstrap/js/bootstrap.min.js}" src="../static/info/bootstrap/js/bootstrap.min.js"></script>
+        <!--  -->
+        <!-- <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script> -->
+		<!-- <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		<!--  -->
+        <script th:src="@{/info/vendors/datatables/js/jquery.dataTables.min.js}" src="../static/info/vendors/datatables/js/jquery.dataTables.min.js"></script>
+        <script th:src="@{/info/assets/DT_bootstrap.js}" src="../static/info/assets/DT_bootstrap.js"></script>
+        <script th:src="@{/js/course-manage-page-common.js}" src="../static/js/course-manage-page-common.js"></script>
+        <script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+        <script th:src="@{/js/course-classrooms.js}" src="../static/js/course-classrooms.js"></script>
+    </body>
+
+</html>

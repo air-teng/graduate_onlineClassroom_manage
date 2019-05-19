@@ -1,0 +1,24 @@
+/* #course-manage-course-info table>thead>tr>td(:odd),table>tbody>tr>td(:odd){
+	width:5em;
+} */
+/*课堂列表*/
+#classroom-list thead>tr>th,tbody>tr>td{
+	width:200px;
+	text-align:center;
+	border-top:none;
+	border-bottom:1px solid #ccc;
+	font-size:16px;
+	padding: 4px;
+}
+#classroom-list thead>tr>th{
+	cursor:pointer;
+	title:"排序";
+}
+#classroom-list thead>tr,tbody>tr{
+	height:50px;
+}
+#classroom-list thead>tr>th:first-child,tbody>tr>td:first-child{
+	width:100px;
+	text-align:center;
+	font-size:16px;
+}

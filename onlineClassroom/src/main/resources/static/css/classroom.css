@@ -1,0 +1,41 @@
+.modal-body-classroom-select{
+	display:inline-block;
+	margin-left:50px;
+	font-size:18px;
+}
+/*创建课堂*/
+.createclassroom-modal-body{
+	display:inline-block !important;
+	margin-left:50px;
+	font-size:16px;
+}
+.createclassroom-modal-body input{
+	margin:5px;
+}
+.createclassroom-modal-body textarea{
+	margin-left:70px;
+}
+/*修改课堂*/
+.updateclassroom-modal-body{
+	display:inline-block !important;
+	margin-left:50px;
+	font-size:16px;
+}
+.updateclassroom-modal-body input{
+	margin:5px;
+}
+.updateclassroom-modal-body textarea{
+	margin-left:70px;
+}
+/*删除课堂*/
+.deleteclassroom-modal-body{
+	display:inline-block !important;
+	margin:20px 0 20px 50px;
+	font-size:18px;
+}
+.deleteclassroom-modal-body input{
+	margin:5px;
+}
+.deleteclassroom-modal-body textarea{
+	margin-left:70px;
+}

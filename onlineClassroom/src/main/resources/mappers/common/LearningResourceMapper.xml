@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocr.common.resource.dao.LearningResourceDao">
+	<insert id="save" parameterType="LearningResource">
+		insert into
+		ocr_learning_resource(
+			source_id,
+			course_code, 
+			classroom_code, 
+			file_id, 
+			upload_account, 
+			upload_time,
+			resource_name, 
+			resource_introduction, 
+			resource_type,
+			file_size
+		)
+		values(
+			#{sourceId},
+			#{courseCode},
+			#{classroomCode},
+			#{fileId},
+			#{uploadAccount},
+			now(),
+			#{resourceName},
+			#{resourceIntroduction}, 
+			#{resourceType},
+			#{fileSize}
+		)
+	</insert>
+	<select id="get" parameterType="Integer" resultType="LearningResource">
+		select * from ocr_learning_resource
+		<where>
+			source_id = #{sourceId}
+		</where>
+		order by upload_time desc
+	</select>
+	<select id="getAll" resultType="LearningResource">
+		select * from ocr_learning_resource
+		<where>
+			course_code = #{courseCode}
+			and
+			classroom_code = #{classroomCode}
+		</where>
+		order by upload_time desc
+	</select>
+	<delete id="delete" parameterType="Integer">
+		delete from ocr_learning_resource
+		<where>
+			source_id = #{sourceId}
+		</where>
+	</delete>
+</mapper>

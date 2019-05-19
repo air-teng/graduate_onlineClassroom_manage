@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+<meta name="description" content=""/>
+<meta name="author" content=""/>
+
+<title>SB Admin - Register</title>
+
+<!-- Custom fonts for this template-->
+<link th:href="@{/course/vendor/fontawesome-free/css/all.min.css}" href="../static/course/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css"/>
+
+<!-- Custom styles for this template-->
+<link th:href="@{/course/css/sb-admin.css}" href="../static/course/css/sb-admin.css" rel="stylesheet"/>
+<link th:href="@{/course/css/register-radio.css}" href="../static/course/css/register-radio.css" rel="stylesheet"/>
+
+</head>
+
+<body class="bg-dark">
+
+	<div class="container">
+		<div class="card card-register mx-auto mt-5">
+			<div class="card-header">Register an Account</div>
+			<div class="card-body">
+				<form action="/login" method="post">
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<div class="form-label-group">
+									<input type="text" id="userAccount" name="userAccount" class="form-control"
+										placeholder="User Account" required="required"
+										autofocus="autofocus"/> <label for="userAccount">账号</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-label-group">
+									<input type="text" id="name" name="name" class="form-control"
+										placeholder="Name" required="required" autofocus="autofocus"/>
+									<label for="name">姓名</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<div class="form-label-group">
+									<input type="radio" id="sex" name="sex" value="m" checked="checked"/>男
+									<input type="radio" value="f" name="sex"/>女
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-label-group">
+									<input type="date" id="birthday" name="birthday" class="form-control"
+										required="required"/> <label
+										for="birthday">生日</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<div class="form-label-group">
+									<input type="password" id="inputPassword" name="password" class="form-control"
+										placeholder="Password" required="required"/> <label
+										for="inputPassword">密码</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-label-group">
+									<input type="password" id="confirmPassword" name="confirmPassword"
+										class="form-control" placeholder="Confirm password"
+										required="required"/> <label for="confirmPassword">确认密码</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- <a class="btn btn-primary btn-block" href="login.html">Register</a> -->
+					<div class="submit_or_reset">
+						<input type="submit" value="注册"/>
+						<input type="reset" value="重置"/>
+					</div>
+				</form>
+				<div id="prompt" th:if="${errorMsg!=null}">
+			  		<span th:text="${errorMsg}" style="color:#F54545;margin-left:20px;"></span>
+			 	</div>
+				<div class="text-center">
+					<a class="d-block small mt-3" href="#" id="jumpToLogin">Login Page</a> <a
+						class="d-block small" href="forgot-password.html">Forgot
+						Password?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script th:src="@{/course/vendor/jquery/jquery.min.js}" src="../static/course/vendor/jquery/jquery.min.js"></script>
+	<script th:src="@{/course/vendor/bootstrap/js/bootstrap.bundle.min.js}" src="../static/course/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script th:src="@{/course/vendor/jquery-easing/jquery.easing.min.js}" src="../static/course/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script th:src="@{/js/register.js}" src="../static/js/register.js"></script>
+
+</body>
+
+</html>

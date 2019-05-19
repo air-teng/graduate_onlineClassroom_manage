@@ -1,0 +1,18 @@
+/*课程信息呈现*/
+#classroom-course-info div>span{
+	margin:10px 30px 10px 10px;
+}
+/* #classroom-course-info div>div{
+	display:inline-block;
+} */
+/*课堂信息呈现*/
+#classroom-classroom-info div>span{
+	margin:10px 30px 10px 10px;
+}
+#classroom-classroom-info div>div{
+	display:inline-block;
+}
+/*课堂界面*/
+#go-into-online-classroom{
+	margin-left:400px;
+}

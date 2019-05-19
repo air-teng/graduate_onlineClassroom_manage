@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+
+  <title>SB Admin - Tables</title>
+
+  <!-- Custom fonts for this template-->
+   <!-- Custom fonts for this template-->
+  <link th:href="@{/course/vendor/fontawesome-free/css/all.min.css}" href="../static/course/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
+
+  <!-- Page level plugin CSS-->
+  <link th:href="@{/course/vendor/datatables/dataTables.bootstrap4.css}" href="../static/course/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet"/>
+  <link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
+  
+  <!-- Custom styles for this template-->
+  <link th:href="@{/course/css/sb-admin.css}" href="../static/course/css/sb-admin.css" rel="stylesheet"/>
+  <link th:href="@{/css/classroom.css}" href="../static/css/classroom.css" rel="stylesheet"/>
+ 
+  <script th:inline="javascript">
+	var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
+	if(userPermission == null){
+		window.location.href=window.location.href.substr(0,window.location.href.indexOf("user")-1);
+	}
+</script>
+</head>
+
+<body id="page-top">
+
+  <!-- 顶部导航栏 -->
+  <div th:replace="common/classroom-common :: classroom-top-nav"></div>
+  
+  <!-- 增删改课堂 -->
+  <div th:if="${session.userPermission!=null and session.userPermission.identificationCode ge 2} ">
+ 	 <div th:replace="common/operationClassroom :: createClassroom"></div>
+ 	 <div th:replace="common/operationClassroom :: updateClassroom"></div>
+ 	 <div th:replace="common/operationClassroom :: deleteClassroom"></div>
+  </div>
+  <div th:replace="common/classroom-common :: other-classroom-select"></div>
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <!-- 左边导航栏 -->
+  	<div th:replace="common/classroom-common :: classroom-left-nav"></div>
+
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Source</li>
+        </ol>
+
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+          	  课堂资料列表</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="classroom-source-list" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>资料名称</th>
+                    <th>类型</th>
+                    <th>上传时间</th>
+                    <th>上传人</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                  	<th>序号</th>
+                    <th>资料名称</th>
+                    <th>类型</th>
+                    <th>上传时间</th>
+                    <th>上传人</th>
+                    <th>操作</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                   <tr>
+                    <th>1</th>
+                    <th>JavaScript DOM编程艺术（中文第二版）.pdf</th>
+                    <th>PDF</th>
+                    <th>2019-5-17 16:20</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>2</th>
+                    <th>JavaScript参考书籍.xls</th>
+                    <th>Excel</th>
+                    <th>2019-5-17 16:22</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>3</th>
+                    <th>JavaScript DOM编程艺术（中文第二版）.pdf</th>
+                    <th>PDF</th>
+                    <th>2019-5-17 16:25</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>4</th>
+                    <th>JavaScript课件.ppt</th>
+                    <th>PPT</th>
+                    <th>2019-5-17 16:30</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>5</th>
+                    <th>JavaScript讲义.word</th>
+                    <th>WORD</th>
+                    <th>2019-5-17 16:32</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>6</th>
+                    <th>JavaScript第二讲课件.ppt</th>
+                    <th>PPT</th>
+                    <th>2019-5-17 17:20</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>7</th>
+                    <th>JavaScript第三讲课件.ppt</th>
+                    <th>PPT</th>
+                    <th>2019-5-17 17:22</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>8</th>
+                    <th>JavaScript第四讲课件.ppt</th>
+                    <th>PPT</th>
+                    <th>2019-5-18 14:20</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>9</th>
+                    <th>JavaScript第四讲课件.ppt</th>
+                    <th>PPT</th>
+                    <th>2019-5-18 14:25</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>10</th>
+                    <th>JavaScript第五讲课件.ppt</th>
+                    <th>PPT</th>
+                    <th>2019-5-19 14:30</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                   <tr>
+                    <th>11</th>
+                    <th>JavaScript第六讲课件.ppt</th>
+                    <th>PPT</th>
+                    <th>2019-5-19 14:35</th>
+                    <th>刘亦菲</th>
+                    <th><a href="download">下载</a></th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+
+        <p class="small text-center text-muted my-5">
+          <em>More table examples coming soon...</em>
+        </p>
+
+      </div>
+      <!-- /.container-fluid -->
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Bootstrap core JavaScript-->
+  <script th:src="@{/course/vendor/jquery/jquery.min.js}" src="../static/course/vendor/jquery/jquery.min.js"></script>
+  <script th:src="@{/course/vendor/bootstrap/js/bootstrap.bundle.min.js}" src="../static/course/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+   <!-- Core plugin JavaScript-->
+  <script th:src="@{/course/vendor/jquery-easing/jquery.easing.min.js}" src="../static/course/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <script th:src="@{/course/vendor/datatables/jquery.dataTables.js}" src="../static/course/vendor/datatables/jquery.dataTables.js"></script>
+  <script th:src="@{/course/vendor/datatables/dataTables.bootstrap4.js}" src="../static/course/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script th:src="@{/course/js/sb-admin.min.js}" src="../static/course/js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script th:src="@{/course/js/demo/datatables-demo.js}" src="../static/course/js/demo/datatables-demo.js"></script>
+  <!-- 自定义js -->
+  <script th:src="@{/js/classroom.js}" src="../static/js/classroom.js"></script>
+  <script th:src="@{/js/operationClassroom.js}" src="../static/js/operationClassroom.js"></script>
+  <script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+</body>
+
+</html>

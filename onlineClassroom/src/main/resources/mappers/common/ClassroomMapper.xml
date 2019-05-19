@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocr.course.classroom.dao.ClassroomDao">
+	<insert id="save" parameterType="Classroom">
+		INSERT INTO ocr_common_classroom
+		(
+			classroom_code, 
+			course_code, 
+			start_time, 
+			end_time, 
+			length_of_time, 
+			online_tech_account, 
+			participate_total,
+			classroom_name,
+			classroom_introduction
+		)
+		values
+		(
+			#{classroomCode}, 
+			#{courseCode}, 
+			#{startTime}, 
+			#{endTime}, 
+			#{lengthOfTime}, 
+			#{onlineTechAccount}, 
+			#{participateTotal},
+			#{classroomName},
+			#{classroomIntroduction}
+		)
+	</insert>
+	<update id="update" parameterType="Classroom">
+		UPDATE ocr_common_classroom
+		<set>
+			start_time = #{startTime}, 
+			end_time = #{endTime}, 
+			length_of_time = #{lengthOfTime}, 
+			online_tech_account = #{onlineTechAccount}, 
+			participate_total = #{participateTotal},
+			classroom_name = #{classroomName},
+			classroom_introduction = #{classroomIntroduction}
+		</set>
+		<where>
+			classroom_code = #{classroomCode}
+			and 
+			course_code = #{courseCode} 
+		</where>
+	</update>
+	<select id="getByClassroomAndCourseCode" parameterType="String" resultType="Classroom">
+		SELECT crm.*,course.course_name from ocr_common_classroom crm
+		left join ocr_common_course course
+		on
+		course.course_code = crm.course_code
+		<where>
+			crm.classroom_code = #{classroomCode}
+			and 
+			crm.course_code = #{courseCode}
+		</where>
+	</select>
+	<delete id="delete" parameterType="String">
+		DELETE from ocr_common_classroom
+		<where>
+			classroom_code = #{classroomCode}
+			and
+			course_code = #{courseCode}
+		</where>
+	</delete>
+	<delete id="deleteAllRelateCourse" parameterType="String">
+		DELETE from ocr_common_classroom
+		<where>
+			course_code = #{courseCode}
+		</where>
+	</delete>
+	<select id="getSimpleClassroomByCourseCode" resultType="java.util.HashMap" parameterType="String">
+		SELECT 
+		classroom_code,classroom_name 
+		from ocr_common_classroom
+		<where>
+			course_code = #{courseCode}
+		</where>
+		order by classroom_code
+	</select>
+	<select id="getMaxClassroomCodeOfCourse" parameterType="String" resultType="Integer">
+		SELECT max(classroom_code) from ocr_common_classroom
+		<where>
+			course_code = #{courseCode}
+		</where>
+	</select>
+</mapper>

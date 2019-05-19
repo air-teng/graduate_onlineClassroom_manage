@@ -1,0 +1,24 @@
+/*创建课程*/
+.createcourse-modal-body{
+	display:inline-block !important;
+	margin-left:50px;
+	font-size:16px;
+}
+.createcourse-modal-body input{
+	margin:5px;
+}
+.createcourse-modal-body textarea{
+	margin-left:70px;
+}
+/*修改课程*/
+.modify-course-modal-body{
+	display:inline-block !important;
+	margin-left:50px;
+	font-size:16px;
+}
+.modify-course-modal-body input{
+	margin:5px;
+}
+.modify-course-modal-body textarea{
+	margin-left:70px;
+}

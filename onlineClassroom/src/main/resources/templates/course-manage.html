@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Tables</title>
+        <!-- Bootstrap -->
+        <link th:href="@{/info/bootstrap/css/bootstrap.min.css}" href="../static/info/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/info/bootstrap/css/bootstrap-responsive.min.css}" href="../static/info/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/info/assets/styles.css}" href="../static/info/assets/styles.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
+        <link th:href="@{/info/assets/DT_bootstrap.css}" href="../static/info/assets/DT_bootstrap.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/css/course-manage.css}" href="../static/css/course-manage.css" rel="stylesheet" media="screen"/>
+        <!--  -->
+        <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="vendors/flot/excanvas.min.js"></script><![endif]-->
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script th:src="@{/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js}" src="../static/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script th:inline="javascript">
+			var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
+			if(userPermission == null){
+				var href_path = window.location.href;
+				window.location.href = href_path.split("/")[0]+"//"+href_path.split("/")[2];
+			}
+			var courseCodeFromSession = [[${session.courseCode}]];//从session中获取课堂代码
+		</script>
+    </head>
+    
+    <body>
+        <div th:replace="common/info-course-common :: info-course-top"></div>
+        <div class="container-fluid">
+        
+            <div class="row-fluid">
+                <div th:replace="common/info-course-common :: info-course-nav"></div>
+                <!--/span-->
+                <div class="span9" id="content">
+	        		<div class="row-fluid">
+			            <!-- block -->
+			            <div class="block">
+			                <div class="navbar navbar-inner block-header">
+			                    <div class="muted pull-left">课程海报</div>
+			                </div>
+			                <div class="block-content collapse in" >
+			                	<div style="display:inline;margin-left:200px;">
+			                		<img style="height:400px;" th:src="@{/img/course-bill.png}"></img>
+			                	</div>
+							</div>
+						</div>
+					</div>
+					<div class="row-fluid">
+			            <!-- block -->
+			            <div class="block">
+			                <div class="navbar navbar-inner block-header">
+			                    <div class="muted pull-left">教师介绍</div>
+			                </div>
+			                <div class="block-content collapse in">
+			                	<div class="teacher-info-name">
+			                		刘亦菲
+			                	</div>
+			                	<div class="teacher-persnlife-title">
+			                		个人简介
+			                	</div>
+			                	<div class="teacher-persnlife-content">
+			                		刘亦菲，1987年8月25日出生于湖北省武汉市，华语影视女演员、歌手，毕业于北京电影学院2002级表演系本科班。
+			                	</div>
+			                	<div class="teacher-research-title">
+			                		研究方向
+			                	</div>
+			                	<div class="teacher-research-content">
+			                		国内影视剧及电视剧
+			                	</div>
+			                	<div class="teacher-achievement-title">
+			                		主要成就
+			                	</div>
+			                	<div class="teacher-achievement-content">
+			                		《天龙八部》
+			                		《金粉世家》
+			                		《仙剑奇侠传1》
+			                		《神雕侠侣》
+			                	</div>
+							</div>
+						</div>
+					</div>
+	        		<div class="row-fluid">
+			            <!-- block -->
+			            <div class="block">
+			                <div class="navbar navbar-inner block-header">
+			                    <div class="muted pull-left">课程信息</div>
+			                </div>
+			                <div class="block-content collapse in">
+			                	课程进度<div class="progress progress-striped active progress-success">
+									<span>40%</span>
+									<div class="bar" style="width:40%"></div>
+								</div>
+			                	<div id="course-manage-course-info" class="table-responsive">
+			                		<table class="table text-nowrap">
+			                			<thead>
+			                				<tr>
+			                					<th></th>
+			                					<th></th>
+			                					<th></th>
+			                					<th></th>
+			                					<th></th>
+			                					<th></th>
+			                				</tr>
+			                			</thead>
+			                			<tbody>
+				                			<tr>
+				                				<td>课程名称</td><td><input type="text" value="国内外影视文化鉴赏"/></td><td>任课教师</td><td><input type="text"  value="刘亦菲"/></td>
+				                			</tr>
+				                			<tr>
+				                				<td>课程学分</td><td><input type="number" value="3.5"/></td><td>课程类型</td><td><input type="text" value="文化，影视，鉴赏"/></td>
+				                			</tr>
+				                			<tr>
+				                				<td>课程学时</td><td><input type="number" value="35"/></td><td>已完成学时</td><td><input type="number" value="17"/></td>
+				                			</tr>
+				                			<tr>
+				                			<td>开课时间</td><td><input type="datetime" value="2019-05-15 08:00"/></td><td>当前状态</td>
+																				                			<td><select>
+																				                			<option value="0">选课未开始</option>
+																				                			<option value="1">选课中</option>
+																				                			<option value="2" selected="selected">课程进行中</option>
+																				                			<option value="3">课程已结束</option>
+																				                			</select></td>
+				                			</tr>
+				                			<tr>
+				                				<td>课程坐席</td><td><input type="number" value="60"/></td><td>已选人数</td><td><input type="number" value="32"/></td>
+				                			</tr>
+				                			<tr>
+				                				<td>当前坐席</td>
+				                				<td><select>
+				                				<option value="0" selected="selected">未满</option>
+				                				<option value="1">已满</option>
+				                				</select></td>
+				                			</tr>
+				                			<tr>
+				                				<td>课程介绍</td>
+				                			</tr>
+				                			<tr>
+				                				<td></td>
+				                				<td colspan="4" >
+				                				<textarea cols="30" style="width:500px !important;" rows="5">这是一门介绍国内外影视的公共课程，并且带着各位同学去鉴赏国内外现状</textarea>
+				                				</td>
+				                			</tr>
+			                			</tbody>
+			                		</table>
+			                	</div>
+							</div>
+						</div>
+					</div>
+	        		
+                </div>
+            </div>
+            <hr/>
+            <footer>
+                <p>&copy; Vincent Gabriel 2013</p>
+            </footer>
+        </div>
+        <!--/.fluid-container-->
+
+        <script th:src="@{/info/vendors/jquery-1.9.1.js}" src="../static/info/vendors/jquery-1.9.1.js"></script>
+        <script th:src="@{/info/bootstrap/js/bootstrap.min.js}" src="../static/info/bootstrap/js/bootstrap.min.js"></script>
+        <!--  -->
+        <!-- <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script> -->
+		<!-- <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		<!--  -->
+        <script th:src="@{/info/vendors/datatables/js/jquery.dataTables.min.js}" src="../static/info/vendors/datatables/js/jquery.dataTables.min.js"></script>
+        <script th:src="@{/info/assets/DT_bootstrap.js}" src="../static/info/assets/DT_bootstrap.js"></script>
+        <script th:src="@{/js/course-manage-page-common.js}" src="../static/js/course-manage-page-common.js"></script>
+        <script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+        <script th:src="@{/js/course-manage.js}" src="../static/js/course-manage.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ocr.gate.dao.UserDao">
+	<insert id="addUser" parameterType="User">
+		INSERT INTO ocr_common_user(
+			user_account,
+			name,
+			sex,
+			birthday,
+			age,
+			password,
+			date_time
+		)
+		VALUES(
+			#{userAccount},
+			#{name},
+			#{sex},
+			#{birthday},
+			#{age},
+			#{password},
+			now()
+		)
+	</insert>
+	<select id="queryByUserAccount" resultType="User" parameterType="String">
+		select * from ocr_common_user <where>user_account=#{userAccount}</where>
+	</select>
+	<update id="updateUser">
+		UPDATE ocr_common_user
+		<set> 
+		name=#{name},
+		sex=#{sex},
+		birthday=#{birthday},
+		age=#{age},
+		identification_code=#{identificationCode},
+		personal_bio=#{personalBio}
+		</set>
+		<where>user_account=#{userAccount}</where>
+	</update>
+	<select id="getIndentification" parameterType="String" resultType="Integer">
+		SELECT 
+		identification_code from ocr_common_user 
+		<where>user_account=#{userAccount}</where>
+	</select>
+</mapper>

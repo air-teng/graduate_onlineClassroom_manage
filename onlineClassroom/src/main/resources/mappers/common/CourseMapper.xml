@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocr.course.dao.CourseDao">
+	<insert id="save" parameterType="Course">
+		INSERT INTO 
+		ocr_common_course
+		(
+			course_code, 
+			course_name, 
+			types, 
+			introduction, 
+			tech_account, 
+			score,
+			course_hours,
+			classroom_total,
+			finished_hours,
+			start_time,
+			select_total
+		)
+		values
+		(
+			#{courseCode}, 
+			#{courseName}, 
+			#{types}, 
+			#{introduction}, 
+			#{techAccount}, 
+			#{score},
+			#{courseHours},
+			#{classroomTotal},
+			#{finishedHours},
+			#{startTime},
+			#{selectTotal}
+		)
+	</insert>
+	<update id="update" parameterType="Course">
+		UPDATE ocr_common_course
+		<set>
+			course_name = #{courseName}, 
+			types = #{types}, 
+			introduction = #{introduction}, 
+			tech_account = #{techAccount}, 
+			score = #{score},
+			course_hours = #{courseHours},
+			finished_hours = #{finishedHours},
+			classroom_total = #{classroomTotal},
+			start_time = #{startTime}
+		</set>
+		<where>
+			course_code = #{courseCode}
+		</where>
+	</update>
+	<select id="getByCourseCode" parameterType="String" resultType="Course">
+		SELECT course.*,user.name tech_name from ocr_common_course course
+		left join ocr_common_user user
+		on user.user_account = course.tech_account
+		<where>
+			course_code = #{courseCode}
+		</where>
+	</select>
+	<delete id="delete" parameterType="String">
+		DELETE from ocr_common_course 
+		<where>
+			course_code = #{courseCode}
+		</where>
+	</delete>
+	<select id="getCountByUserAccount" parameterType="String" resultType="Integer">
+		SELECT count(*) from ocr_common_course 
+		<where>
+			tech_account = #{userAccount}
+		</where>
+	</select>
+	<select id="getAllCourseByUserAccount" parameterType="String" resultType="Course">
+		SELECT * from ocr_common_course
+		<where>
+			tech_account = #{useAccount}
+		</where>
+	</select>
+	<select id="getAllCourse" resultType="Course">
+		SELECT * from ocr_common_course
+	</select>
+	<select id="getCourseListByCodeList" resultType="Course">
+		SELECT * from ocr_common_course
+		<where>
+			course_code in
+			<foreach collection="courseCodeList" open="(" close=")" item="courseCode" separator=",">  
+       			 #{courseCode}  
+    		</foreach>  
+		</where>
+	</select>
+	<update id="plusSelectTotal" parameterType = "String">
+		UPDATE ocr_common_course SET select_total = select_total+1 
+		<where> 
+			course_code = #{courseCode}
+		</where>
+	</update>
+	<update id="subSelectTotal" parameterType = "String">
+		UPDATE ocr_common_course SET select_total = select_total-1 
+		<where> 
+			course_code = #{courseCode}
+		</where>
+	</update>
+	<update id="plusClassroomTotal" parameterType = "String">
+		UPDATE ocr_common_course SET classroom_total = classroom_total+1 
+		<where> 
+			course_code = #{courseCode}
+		</where>
+	</update>
+	<update id="subClassroomTotal" parameterType = "String">
+		UPDATE ocr_common_course SET classroom_total = classroom_total-1 
+		<where> 
+			course_code = #{courseCode}
+		</where>
+	</update>
+	<select id="getClassroomTotalByCourseCode" parameterType = "String" resultType="Integer">
+		SELECT classroom_total from ocr_common_course
+		<where> 
+			course_code = #{courseCode}
+		</where>
+	</select>
+</mapper>

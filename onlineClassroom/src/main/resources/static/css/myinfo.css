@@ -1,0 +1,75 @@
+/*头像*/
+.avatar-maintain{
+	background-color:#ddd;
+	height:160px;
+	width:100%;
+	margin-top:25px;
+}
+.avatar-picture-upload{
+	margin:4px 0 0 350px;
+	height:120px;
+	width:200px;
+	/* background-color:#ccc; */
+}
+.avatar-picture-upload img{
+	height: 100px;
+	width: 135px;
+	cursor:pointer;
+	background:#EEE;
+}
+#avatar-upload{
+	margin-left:-1px;
+}
+#avatar-upload +a{
+	width:72px;
+	height:30px;
+	font-size:14px;
+	border-width:2px;
+	padding:1px 6px 1px 6px;
+	background:buttonface;
+	border-color:buttonface;
+}
+/*信息呈现*/
+.user-info-present{
+	margin-top:20px;
+	background:#ccc;
+}
+.user-info-display-form{
+	padding:10px 10px 10px 10px;	
+}
+.user-info-display-form div{
+	margin:10px 10px 10px 10px;	
+	width: 200px;
+	heigth:5px;
+	display:inline-block;
+	font-size:16px;
+	
+}
+#user_avatar{
+	margin-left:-1px;
+}
+.user-info-operation{
+	margin:5px 0px 5px 520px;
+}
+/*编辑页面*/
+.user-info-operation button{
+	font-size:16px;
+	margin-bottom:10px;
+}
+.user-info-present form{
+	padding:10px 10px 10px 10px;
+}
+.user-info-present span{
+	padding:10px 10px 10px 10px;
+	font-size:16px;
+}
+.user-info-present span>input{
+	width:150px;
+}
+.user-info-present span>input[type="radio"]{
+	width:20px !important;
+}
+.user-info-present textarea{
+	margin-left:92px;
+	width:500px;
+}

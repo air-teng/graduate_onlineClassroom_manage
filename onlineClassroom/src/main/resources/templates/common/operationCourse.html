@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+ <div th:fragment = "createCourse">
+	 <div class="modal fade" id="new-course-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title" id="createModal"><strong>创建课程</strong></h4>
+	          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	            <span aria-hidden="true">×</span>
+	          </button>
+	        </div>
+	        <div class="createcourse-modal-body" id="createcourse-modal-body">
+	        	<div>
+	        		课程名称<input type="text" name="courseName"/><br/>
+	        		课程类型<input type="text" value="" name="types"/><br/>
+	        		课程学时<input type="number" value="" name="courseHours"/><br/>
+	        		课程学分<input type="number" value="" name="score"/><br/>
+	        		开课时间<input type="datetime-local" value="" name="startTime"/><br/>
+	        		课程介绍<br/><textarea name="introduction" cols="28" rows="3"></textarea><br/>
+	        	</div>
+			</div>
+	        <div class="modal-footer">
+	          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          <a class="btn btn-primary" id="new-course-confirm" href="javascript:void(0)">Confirm</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  </div>
+ <div th:fragment = "updateCourse">
+	 <div class="modal fade" id="modify-course-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title" id="modifyModel"><strong>修改课程</strong></h4>
+	          <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="margin-top:-40px;">
+	            <span aria-hidden="true">×</span>
+	          </button>
+	        </div>
+	        <div class="modify-course-modal-body" id="modify-course-modal-body">
+	        	<div>
+	        		<input type="hidden" name="courseCode"/><br/>
+	        		课程名称<input type="text" name="courseName"/><br/>
+	        		课程类型<input type="text" value="" name="types"/><br/>
+	        		课程学时<input type="number" value="" name="courseHours"/><br/>
+	        		课程学分<input type="number" value="" name="score"/><br/>
+	        		开课时间<input type="datetime-local" value="" name="startTime"/><br/>
+	        		课程介绍<br/><textarea name="introduction" cols="28" rows="3"></textarea><br/>
+	        	</div>
+			</div>
+	        <div class="modal-footer">
+	          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          <a class="btn btn-primary" id="modify-course-confirm" href="javascript:void(0)">Confirm</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  </div>
+   <div th:fragment = "deleteCourse">
+	 <div class="modal fade" id="delete-course-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title" id="deleteModel"><strong>确认删除</strong></h4>
+	          <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="margin-top:-40px;">
+	            <span aria-hidden="true">×</span>
+	          </button>
+	        </div>
+	        <div class="delete-course-modal-body">
+	        	<div>请确认删除《<strong><span id="delete-confirm-course-Name"></span></strong>》课程</div>
+			</div>
+	        <div class="modal-footer">
+	          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          <a class="btn btn-primary" id="delete-course-confirm" href="javascript:void(0)">Confirm</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  </div>
+ <div th:fragment = "selectCourse">
+	 <div class="modal fade" id="select-course-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title" id="selectModel"><strong>确认选课</strong></h4>
+	          <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="margin-top:-40px;">
+	            <span aria-hidden="true">×</span>
+	          </button>
+	        </div>
+	        <div class="select-course-modal-body">
+	        	<div>请确认选择《<strong><span id="select-confirm-course-Name"></span></strong>》课程</div>
+			</div>
+	        <div class="modal-footer">
+	          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          <a class="btn btn-primary" id="select-course-confirm" href="javascript:void(0)">Confirm</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  </div>
+ <div th:fragment = "notSelectCourse">
+	 <div class="modal fade" id="not-select-course-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title" id="notSelectModel"><strong>确认取消选课</strong></h4>
+	          <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="margin-top:-40px;">
+	            <span aria-hidden="true">×</span>
+	          </button>
+	        </div>
+	        <div class="not-select-course-modal-body">
+	        	<div>请确认取消选择《<strong><span id="not-select-confirm-course-Name"></span></strong>》课程</div>
+			</div>
+	        <div class="modal-footer">
+	          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          <a class="btn btn-primary" id="not-select-course-confirm" href="javascript:void(0)">Confirm</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  </div>
+</html>

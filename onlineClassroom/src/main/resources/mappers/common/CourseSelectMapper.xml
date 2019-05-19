@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocr.course.dao.CourseSelectDao">
+	<insert id="add" parameterType="CourseSelect">
+		INSERT INTO ocr_course_select
+		(
+			course_code,
+			student_account,
+			score
+		)
+		VALUES
+		(
+			#{courseCode},
+			#{studentAccount},
+			#{score}
+		)
+	</insert>
+	<delete id="delete" parameterType="CourseSelect">
+		DELETE from ocr_course_select
+		<where>
+			course_code = #{courseCode}
+			and 
+			student_account = #{studentAccount}
+		</where>
+	</delete>
+	<update id="update" parameterType="CourseSelect">
+		UPDATE ocr_course_select
+		<set>
+			degree_official = #{degreeOfficial},
+			degree_makeup = #{degreeMakeup},
+			grade_point = #{gradePoint}
+		</set>
+	</update>
+	<select id="get" parameterType="CourseSelect" resultType="CourseSelect">
+		SELECT * from ocr_course_select
+		<where>
+			course_code = #{courseCode}
+			and 
+			student_account = #{studentAccount}
+		</where>
+	</select>
+	<select id="getAllByStudentAccount" parameterType="String" resultType="CourseSelect">
+		SELECT * from ocr_course_select
+		<where>
+			student_account = #{studentAccount}
+		</where>
+	</select>
+	<delete id="deleteAllByCourseCode" parameterType="String">
+		DELETE from ocr_course_select
+		<where>
+			course_code = #{courseCode}
+		</where>
+	</delete>
+</mapper>

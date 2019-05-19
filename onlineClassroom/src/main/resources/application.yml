@@ -1,0 +1,35 @@
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/ocr?characterEncoding=utf8&useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+    data:
+        mongodb:
+            uri: mongodb://ocradmin:654321@localhost:27017/ocr
+    application:
+        name: spring-boot-mongodb
+    http:
+        #上传文件的大小
+        multipart:
+            maxFileSize: 10Mb
+            maxRequestSize: 20Mb 
+        
+mybatis:
+    typeAliasesPackage: 
+        com.ocr.common.pojo
+    mapperLocations: 
+        mappers/common/*.xml
+    configuration:
+       map-underscore-to-camel-case: true
+
+logging:
+    level: 
+        cn.tedu.mapper: debug
+
+server:
+    port: 8091
+    #下面这个参数是为解决Invalid character found in method name. HTTP method names must be tokens问题而新增的
+    tomcat:
+        max-http-header-size: 8192

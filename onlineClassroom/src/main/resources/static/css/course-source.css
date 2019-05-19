@@ -1,0 +1,48 @@
+/* #course-manage-course-info table>thead>tr>th:nth-child(odd),table>tbody>tr>td:nth-child(odd){
+	width:13em;
+} */
+/*资料列表*/
+#study-source-list thead>tr>th,tbody>tr>td{
+	width:100px;
+	text-align:center;
+	border-top:none;
+	border-bottom:1px solid #ccc;
+	font-size:16px;
+	padding: 4px;
+}
+#study-source-list tbody>tr.odd{
+	background-color: #f9f9f9;
+}
+#study-source-list tbody>tr.even{
+	 background-color: #ffffff;
+}
+#study-source-list thead>tr>th:nth-child(2),tbody>tr>td:nth-child(2){
+	width:400px;
+	text-align:left;
+	font-size:16px;
+}
+#study-source-list thead>tr>th:nth-child(4),tbody>tr>td:nth-child(4){
+	width:200px;
+	text-align:left;
+	font-size:16px;
+}
+#study-source-list thead>tr>th:nth-child(4),tbody>tr>td:nth-child(4){
+	width:200px;
+	text-align:center;
+	font-size:16px;
+}
+#study-source-list tbody>tr>td>a{
+	cursor:pointer;
+}
+#study-source-list thead>tr>th{
+	cursor:pointer;
+	title:"排序";
+}
+/*资料上传*/
+#source-upload-div{
+	margin-left:2em;
+	font-size:16px;
+}
+#source-upload-div input,textarea{
+	margin-left:1em;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ocr.info.dao.UploadFilePOJODao">
+	<insert id="save" parameterType="UploadFilePOJO">
+		INSERT INTO ocr_common_user_avatar(user_account,field_id)
+		VALUES(#{userAccount},#{fieldId})
+	</insert>
+	<update id="update" parameterType="UploadFilePOJO">
+		UPDATE ocr_common_user_avatar SET field_id = #{fieldId} WHERE user_account = #{userAccount}
+	</update>
+	<select id="get" parameterType="String" resultType="UploadFilePOJO">
+		SELECT * from ocr_common_user_avatar WHERE user_account = #{userAccount}
+	</select>
+</mapper>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>Calendar</title>
+        <!-- Bootstrap -->
+        <link th:href="@{/info/bootstrap/css/bootstrap.min.css}" href="../static/info/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/info/vendors/fullcalendar/fullcalendar.css}" href="../static/info/vendors/fullcalendar/fullcalendar.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
+        <link th:href="@{/info/assets/styles.css}" href="../static/info/assets/styles.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/css/myinfo.css}" href="../static/css/myinfo.css" rel="stylesheet" media="screen"/>
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script th:inline="javascript">
+			var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
+			if(userPermission == null){
+				var href_path = window.location.href;
+				window.location.href = href_path.split("/")[0]+"//"+href_path.split("/")[2];
+			}
+			var courseCodeFromSession = [[${session.courseCode}]];//从session中获取课堂代码
+		</script>
+        <script th:src="@{/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js}" src="../static/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    
+    <body>
+        <div th:replace="common/info-course-common :: info-course-top"></div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div th:replace="common/info-course-common :: info-course-nav"></div>
+                <!--/span-->
+                <div class="span9" id="content">
+                    <div class="row-fluid">
+                        <!-- block -->
+                        <!-- <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Calendar</div>
+                                <div class="pull-right"><span class="badge badge-warning">View More</span>
+
+                                </div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span2">
+                                    <div id='external-events'>
+                                    <h4>Draggable Events</h4>
+                                    <div class='external-event'>My Event 1</div>
+                                    <div class='external-event'>My Event 2</div>
+                                    <div class='external-event'>My Event 3</div>
+                                    <div class='external-event'>My Event 4</div>
+                                    <div class='external-event'>My Event 5</div>
+                                    <div class='external-event'>My Event 6</div>
+                                    <div class='external-event'>My Event 7</div>
+                                    <div class='external-event'>My Event 8</div>
+                                    <div class='external-event'>My Event 9</div>
+                                    <div class='external-event'>My Event 10</div>
+                                    <div class='external-event'>My Event 11</div>
+                                    <div class='external-event'>My Event 12</div>
+                                    <div class='external-event'>My Event 13</div>
+                                    <div class='external-event'>My Event 14</div>
+                                    <div class='external-event'>My Event 15</div>
+                                    <p>
+                                    <input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove after drop</label>
+                                    </p>
+                                    </div>
+
+                                </div>
+                                <div class="span10">
+                                    <div id='calendar'></div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="avatar-maintain">
+                        	<div class="avatar-picture-upload">
+                        		<div title="更换头像" id="avatar-surround"><img src="show" id="avatar_select"/></div>
+                        		<form  action="" method="POST" enctype="multipart/form-data">
+                        			<input type="file" id="user_avatar" style="display:none"></input>
+                        			<input id="avatar-upload" type="button" value="上传头像"></input>
+                        			<a href="download">头像下载</a>
+                        		</form>
+                        	</div>
+                        </div>
+                        <div class="user-info-present" id="div-of-user-info">
+                        	 <div class="user-info-display-form">
+		                         <div><strong>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</strong>：<span th:text="OCR" name="name"/></div>
+		                         <div><strong>性别</strong>：<span th:text="男" name="sex"/></div>
+		                         <br/>
+		                         <div><strong>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</strong>：<span th:text="2019-3-25" name="birthday"/></div>
+		                         <div><strong>年龄</strong>：<span th:text="1" name="age"/></div>
+		                         <br/>
+		                         <div><strong>注册时间</strong>：<span th:text="2019-3-25" name="date_time"/></div>
+		                         <div><strong>身份</strong>：<span th:text="普通成员" name="identification_code"/></div>
+		                         <br/>
+		                         <div><strong>个人简介</strong>：<br/><textarea th:text="你还没有书写你的个人简介" name="personalBio" cols="40"/></div>
+                        	 </div>
+                        	 <div class="user-info-operation">
+	                           	<button id="edit-user-info">编辑</button>&nbsp;&nbsp;
+                        	 </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <footer>
+                <p>&copy; Vincent Gabriel 2013</p>
+            </footer>
+        </div>
+        <style>
+        #external-events {
+            float: left;
+            width: 150px;
+            padding: 0 10px;
+            border: 1px solid #ccc;
+            background: #eee;
+            text-align: left;
+            }
+            
+        #external-events h4 {
+            font-size: 16px;
+            margin-top: 0;
+            padding-top: 1em;
+            }
+            
+        .external-event { /* try to mimick the look of a real event */
+            margin: 10px 0;
+            padding: 2px 4px;
+            background: #3366CC;
+            color: #fff;
+            font-size: .85em;
+            cursor: pointer;
+            z-index: 99999999;
+            }
+            
+        #external-events p {
+            margin: 1.5em 0;
+            font-size: 11px;
+            color: #666;
+            }
+            
+        #external-events p input {
+            margin: 0;
+            vertical-align: middle;
+            }
+
+        </style>
+        <!--/.fluid-container-->
+        <script th:src="@{/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js}" src="../static/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script th:src="@{/info/vendors/jquery-1.9.1.min.js}" src="../static/info/vendors/jquery-1.9.1.min.js"></script>
+        <script th:src="@{/info/vendors/jquery-ui-1.10.3.js}" src="../static/info/vendors/jquery-ui-1.10.3.js"></script>
+        <script th:src="@{/info/bootstrap/js/bootstrap.min.js}" src="../static/info/bootstrap/js/bootstrap.min.js"></script>
+        <script th:src="@{/info/vendors/fullcalendar/fullcalendar.js}" src="../static/info/vendors/fullcalendar/fullcalendar.js"></script>
+        <script th:src="@{/info/vendors/fullcalendar/gcal.js}" src="../static/info/vendors/fullcalendar/gcal.js"></script>
+        <script th:src="@{/info/assets/scripts.js}" src="../static/info/assets/scripts.js"></script>
+        <script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+        <script th:src="@{/js/course-manage-page-common.js}" src="../static/js/course-manage-page-common.js"></script>
+        <script th:src="@{/js/myinfo.js}" src="../static/js/myinfo.js"></script>
+        <script>
+        $(function() {
+            // Easy pie charts
+            var calendar = $('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+            selectable: true,
+            selectHelper: true,
+            select: function(start, end, allDay) {
+                var title = prompt('Event Title:');
+                if (title) {
+                    calendar.fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                        },
+                        true // make the event "stick"
+                    );
+                }
+                calendar.fullCalendar('unselect');
+            },
+            droppable: true, // this allows things to be dropped onto the calendar !!!
+            drop: function(date, allDay) { // this function is called when something is dropped
+            
+                // retrieve the dropped element's stored Event Object
+                var originalEventObject = $(this).data('eventObject');
+                
+                // we need to copy it, so that multiple events don't have a reference to the same object
+                var copiedEventObject = $.extend({}, originalEventObject);
+                
+                // assign it the date that was reported
+                copiedEventObject.start = date;
+                copiedEventObject.allDay = allDay;
+                
+                // render the event on the calendar
+                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+                
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+                
+            },
+			editable: true,
+			// US Holidays
+			events: 'http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic'
+			
+			});
+        });
+
+        $('#external-events div.external-event').each(function() {
+        
+            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+            // it doesn't need to have a start or end
+            var eventObject = {
+                title: $.trim($(this).text()) // use the element's text as the event title
+            };
+            
+            // store the Event Object in the DOM element so we can get to it later
+            $(this).data('eventObject', eventObject);
+            
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999999999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+            
+        });
+        </script>
+    </body>
+
+</html>

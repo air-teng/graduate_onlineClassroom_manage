@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>注册成功</title>
+</head>
+<script type="text/javascript">
+	var _path=window.location.href;
+</script>
+<body>
+	<h1>注册成功，将会在<span id="time" style="color:red;font-size:45px">3</span>秒钟后跳转到登录页面...</h1>
+	<script th:src="@{/course/vendor/jquery/jquery.min.js}" src="../static/course/vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript">
+		var i=3;
+		$(
+			function(){
+			 freshen();
+			 setTimeout(function(){
+			        window.location.href="http://localhost:8070";
+			    },3000);
+			}
+		)
+		//自动刷新页面上的时间
+			
+		function freshen(){
+		    $("#time").empty().append(i);
+		    i=i-1;
+		    setTimeout(function(){
+		        freshen();
+		    },1000);
+		}
+		
+	</script>
+</body>
+</html>
