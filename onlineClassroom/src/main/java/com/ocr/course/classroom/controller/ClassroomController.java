@@ -1,5 +1,6 @@
 package com.ocr.course.classroom.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ocr.common.pojo.Classroom;
@@ -35,7 +37,7 @@ public class ClassroomController {
 		return "classroom-onLine";
 	}
 	
-	@RequestMapping("{classroomCode}/{pageName}")
+	@RequestMapping(value="{classroomCode}/{pageName}",method=RequestMethod.GET)
 	public String getClassroomPages(@PathVariable("pageName")String pageName,HttpServletRequest request) {
 		if("login".equals(pageName)) {
 			request.getSession().removeAttribute("userPermission");//移除

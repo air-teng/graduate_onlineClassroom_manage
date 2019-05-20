@@ -2,13 +2,11 @@ package com.ocr.course.classroom.controller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -157,72 +155,150 @@ public class ResourceUploadController {
 		return AjaxResult.oK(list);
 	}
 	
-	@RequestMapping(value="{classroomCode}/reviewResource",method = RequestMethod.POST)
-	public void reviewResource(Integer sourceId,HttpServletRequest request,HttpServletResponse response) throws IOException, ParserConfigurationException, TransformerException {
-		  final String path = "C:\\Users\\Administrator\\Desktop\\论文书写\\";
-//		  final String file = "毕业设计_滕云飞.doc";
+	@RequestMapping(value="{classroomCode}/review/reviewResource",method = RequestMethod.GET)
+	@ResponseBody
+	public void reviewResource(Integer sourceId,String sourceType,HttpServletRequest request,HttpServletResponse response) throws IOException, ParserConfigurationException, TransformerException {
+		String path = "F:\\test_data\\";
 		 
 		//获取用户信息
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("userPermission");
 		if(user == null) {
-			return ;
+			return ;	
 		}		
 		LearningResource learningResource = learningResourceService.get(sourceId);
 		Query query = new Query(Criteria.where("_id").is(learningResource.getFileId()));
+		
+		File myFile = new File(path+learningResource.getFileId());
+		if(!myFile.exists()) {
+			myFile.mkdirs();
+		}
+		path = path+learningResource.getFileId()+"\\";
+		
 		//查询单个文件
 		GridFSDBFile fileOne = gridFsTemplate.findOne(query);
 		InputStream inputStream = fileOne.getInputStream();//得到文件的输入流
 		String fileName = learningResource.getResourceName();
-		File targetFile  = new File(path+"\\res\\", fileName.substring(0, fileName.lastIndexOf("."))+".html");
-		 /* if(targetFile.exists()) {
+		File targetFile  = new File(path, fileName.substring(0, fileName.lastIndexOf("."))+".html");
+		
+		if(targetFile.exists()) {
 			  Runtime ce=Runtime.getRuntime();
 			  ce.exec("cmd /c start "+targetFile.getAbsolutePath());
 			  return ;
-		  }*/
-//		  InputStream input = new FileInputStream(path + file);
-		  HWPFDocument wordDocument = new HWPFDocument(inputStream);
-		  WordToHtmlConverter wordToHtmlConverter = new WordToHtmlConverter(
-		    DocumentBuilderFactory.newInstance().newDocumentBuilder()
-		      .newDocument());
-		  wordToHtmlConverter.setPicturesManager(new PicturesManager() {
-		  public String savePicture(byte[] content, PictureType pictureType,
-		     String suggestedName, float widthInches, float heightInches) {
-		    return suggestedName;
-		   }
-		  });
-		  wordToHtmlConverter.processDocument(wordDocument);
-		  List<Picture> pics = wordDocument.getPicturesTable().getAllPictures();
-		  if (pics != null) {
-		   for (int i = 0; i < pics.size(); i++) {
-		    Picture pic = (Picture) pics.get(i);
-		    try {
-		     pic.writeImageContent(new FileOutputStream(path+"\\res\\"
-		       + pic.suggestFullFileName()));
-		    } catch (FileNotFoundException e) {
-		     e.printStackTrace();
-		    }
-		   }
-		  }
-		  Document htmlDocument = wordToHtmlConverter.getDocument();
-		  ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-		  DOMSource domSource = new DOMSource(htmlDocument);
-		  StreamResult streamResult = new StreamResult(outStream);
-		  TransformerFactory tf = TransformerFactory.newInstance();
-		  Transformer serializer = tf.newTransformer();
-		  serializer.setOutputProperty(OutputKeys.ENCODING, "utf-8");
-		  serializer.setOutputProperty(OutputKeys.INDENT, "yes");
-		  serializer.setOutputProperty(OutputKeys.METHOD, "html");
-		  serializer.transform(domSource, streamResult);
-		  outStream.close();
-		  String content = new String(outStream.toByteArray());
-//		  File targetFile  = new File(path+"\\res\\", "毕业设计_滕云飞.html");
-//		  return targetFile;
-		  FileUtils.writeStringToFile(targetFile, content, "utf-8");
-//		  response.getWriter().println(content);
-		  Runtime ce=Runtime.getRuntime();
-		  ce.exec("cmd /c start "+targetFile.getAbsolutePath());
-//		  return path+"\\res\\毕业设计_滕云飞.html";
+		}
+//		 InputStream input = new FileInputStream(path + file);
+		
+		if("Word".equals(sourceType)) {
+			HWPFDocument wordDocument = new HWPFDocument(inputStream);
+			WordToHtmlConverter wordToHtmlConverter = new WordToHtmlConverter(
+		    DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument());
+			wordToHtmlConverter.setPicturesManager(new PicturesManager() {
+			  public String savePicture(byte[] content, PictureType pictureType,
+			     String suggestedName, float widthInches, float heightInches) {
+			    return suggestedName;
+			   }
+			  });
+			  wordToHtmlConverter.processDocument(wordDocument);
+			  List<Picture> pics = wordDocument.getPicturesTable().getAllPictures();
+			  if (pics != null) {
+			   for (int i = 0; i < pics.size(); i++) {
+			    Picture pic = (Picture) pics.get(i);
+			    try {
+			     pic.writeImageContent(new FileOutputStream(path
+			       + pic.suggestFullFileName()));
+			    } catch (FileNotFoundException e) {
+			     e.printStackTrace();
+			    }
+			   }
+			  }
+			  Document htmlDocument = wordToHtmlConverter.getDocument();
+			  ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+			  DOMSource domSource = new DOMSource(htmlDocument);
+			  StreamResult streamResult = new StreamResult(outStream);
+			  TransformerFactory tf = TransformerFactory.newInstance();
+			  Transformer serializer = tf.newTransformer();
+			  serializer.setOutputProperty(OutputKeys.ENCODING, "utf-8");
+			  serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+			  serializer.setOutputProperty(OutputKeys.METHOD, "html");
+			  serializer.transform(domSource, streamResult);
+			  outStream.close();
+			  String content = new String(outStream.toByteArray());
+			  FileUtils.writeStringToFile(targetFile, content, "utf-8");
+			  Runtime ce=Runtime.getRuntime();
+			  ce.exec("cmd /c start "+targetFile.getAbsolutePath());
+		}else if("Excel".equals(sourceType)) {
+			/* HSSFWorkbook excelBook=new HSSFWorkbook(inputStream);
+		     ExcelToHtmlConverter excelToHtmlConverter = new ExcelToHtmlConverter (DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument() );
+		     excelToHtmlConverter.processWorkbook(excelBook);
+		     List<HSSFPictureData> pics = excelBook.getAllPictures();
+		     if (pics != null) {
+		         for (int i = 0; i < pics.size(); i++) {
+		             Picture pic = (Picture) pics.get (i);
+		             try {
+		                 pic.writeImageContent (new FileOutputStream(path
+		      			       + pic.suggestFullFileName()));
+		             } catch (FileNotFoundException e) {
+		                 e.printStackTrace();
+		             }
+		         }
+		     }
+		     Document htmlDocument =excelToHtmlConverter.getDocument();
+		     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+		     DOMSource domSource = new DOMSource (htmlDocument);
+		     StreamResult streamResult = new StreamResult (outStream);
+		     TransformerFactory tf = TransformerFactory.newInstance();
+		     Transformer serializer = tf.newTransformer();
+		     serializer.setOutputProperty (OutputKeys.ENCODING, "utf-8");
+		     serializer.setOutputProperty (OutputKeys.INDENT, "yes");
+		     serializer.setOutputProperty (OutputKeys.METHOD, "html");
+		     serializer.transform (domSource, streamResult);
+		     outStream.close();
+
+		     String content = new String (outStream.toByteArray() );
+
+		     FileUtils.writeStringToFile(targetFile, content, "utf-8");
+		     
+		     Runtime ce=Runtime.getRuntime();
+			  ce.exec("cmd /c start "+targetFile.getAbsolutePath());*/
+		}else if("PPT".equals(sourceType)) {
+			/*try {   
+	            SlideShow ppt = new SlideShow(is);   
+	            is.close();   
+	            Dimension pgsize = ppt.getPageSize();   
+	            org.apache.poi.hslf.model.Slide[] slide = ppt.getSlides();   
+	            for (int i = 0; i < slide.length; i++) {   
+	                System.out.print("第" + i + "页。");   
+
+	                TextRun[] truns = slide[i].getTextRuns();      
+	                for ( int k=0;k<truns.length;k++){      
+	                   RichTextRun[] rtruns = truns[k].getRichTextRuns();      
+	                  for(int l=0;l<rtruns.length;l++){      
+	                       int index = rtruns[l].getFontIndex();      
+	                        String name = rtruns[l].getFontName();                
+	                        rtruns[l].setFontIndex(1);      
+	                        rtruns[l].setFontName("宋体");  
+//	                        System.out.println(rtruns[l].getText());
+	                   }      
+	                }      
+	                BufferedImage img = new BufferedImage(pgsize.width,pgsize.height, BufferedImage.TYPE_INT_RGB);   
+
+	                Graphics2D graphics = img.createGraphics();   
+	                graphics.setPaint(Color.BLUE);   
+	                graphics.fill(new Rectangle2D.Float(0, 0, pgsize.width, pgsize.height));   
+	                slide[i].draw(graphics);   
+
+	                // 这里设置图片的存放路径和图片的格式(jpeg,png,bmp等等),注意生成文件路径   
+	                FileOutputStream out = new FileOutputStream("D:/poi-test/pptToImg/pict_"+ (i + 1) + ".jpeg");   
+	                javax.imageio.ImageIO.write(img, "jpeg", out);   
+	                out.close();   
+
+	            }   
+	        } catch (FileNotFoundException e) {   
+	            System.out.println(e);   
+	            // System.out.println("Can't find the image!");   
+	        } catch (IOException e) {   
+	        }   */
+		}
 	}
 /*	@RequestMapping(value="{classroomCode}/reviewResource",method = RequestMethod.POST)
 	public void reviewResource(Integer sourceId,HttpServletRequest request,HttpServletResponse response) throws IOException, ParserConfigurationException, TransformerException {

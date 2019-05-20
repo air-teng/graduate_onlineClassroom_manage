@@ -114,7 +114,8 @@ function initResourceTable(resourceInfoList){
 		   resourceInfoList[i].resourceType == "PDF" ||
 		   resourceInfoList[i].resourceType == "TEXT" ||
 		   resourceInfoList[i].resourceType == "Picture" ){//只提供对Word,PPT,Excel和text的预览
-			trElem += '<a title="预览" data-source-id='+resourceInfoList[i].sourceId+' data-source-type='+resourceInfoList[i].resourceType+' onclick="reviewResource(this)"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>';
+//			trElem += '<a title="预览" data-source-id='+resourceInfoList[i].sourceId+' data-source-type='+resourceInfoList[i].resourceType+' onclick="reviewResource(this)"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>';
+			trElem += '<a data-source-id="'+resourceInfoList[i].sourceId+'" data-source-type="'+resourceInfoList[i].resourceType+'" onclick="resourceReview(this)"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>';
 		}
 				
 		if(parseInt(userPermission.identificationCode) >= 2){
@@ -150,10 +151,13 @@ function deleteResource(sourceId){
 		}
 	});
 }
-function reviewResource(obj){
-	$.ajax({
-		url:"reviewResource",
-		data:{"sourceId":$(obj).attr("data-source-id")},
-		type:"post"
-	})
+function resourceReview(obj){
+	if(/Word/.test($(obj).attr("data-source-type")) /*|| /Excel/.test($(obj).attr("data-source-type"))*/ ){
+		$.ajax({
+			url:"review/reviewResource?sourceId="+$(obj).attr("data-source-id")+"&sourceType="+$(obj).attr("data-source-type")
+		});
+	}else{
+		alert("暂不支持该类型文件的预览");
+	}
+	
 }
