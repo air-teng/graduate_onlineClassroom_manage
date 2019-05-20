@@ -110,11 +110,11 @@ function initResourceTable(resourceInfoList){
 		
 		trElem += '<td>';
 		if(resourceInfoList[i].resourceType == "Word" ||
-		   resourceInfoList[i].resourceType == "PPT" ||
 		   resourceInfoList[i].resourceType == "Excel" ||
+		   resourceInfoList[i].resourceType == "PDF" ||
 		   resourceInfoList[i].resourceType == "TEXT" ||
 		   resourceInfoList[i].resourceType == "Picture" ){//只提供对Word,PPT,Excel和text的预览
-			trElem += '<a title="预览" data-source-id='+resourceInfoList[i].sourceId+'><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>';
+			trElem += '<a title="预览" data-source-id='+resourceInfoList[i].sourceId+' data-source-type='+resourceInfoList[i].resourceType+' onclick="reviewResource(this)"><i class="fa fa-eye" aria-hidden="true"><span class="hidden"></span></i></a>';
 		}
 				
 		if(parseInt(userPermission.identificationCode) >= 2){
@@ -149,4 +149,11 @@ function deleteResource(sourceId){
 			alert(res.msg);
 		}
 	});
+}
+function reviewResource(obj){
+	$.ajax({
+		url:"reviewResource",
+		data:{"sourceId":$(obj).attr("data-source-id")},
+		type:"post"
+	})
 }

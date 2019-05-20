@@ -91,6 +91,7 @@ function initResourceTable(resourceInfoList){
 		trElem += '<td>';
 		if(resourceInfoList[i].resourceType == "Word" ||
 		   resourceInfoList[i].resourceType == "PPT" ||
+		   resourceInfoList[i].resourceType == "PDF" ||
 		   resourceInfoList[i].resourceType == "Excel" ||
 		   resourceInfoList[i].resourceType == "TEXT" ||
 		   resourceInfoList[i].resourceType == "Picture" ){//只提供对Word,PPT,Excel和text的预览
