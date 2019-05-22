@@ -71,7 +71,7 @@ public class IndexController {
 	public String registerOk() {
 		return "registerOk";
 	}
-	@RequestMapping(value= {"personalInfo","sociaty","message","email"},method=RequestMethod.GET)
+	@RequestMapping(value= {"personalInfo","sociaty","message","email","authority"},method=RequestMethod.GET)
 	public String personalInfo(HttpServletRequest request) {
 		String contextPath = request.getServletPath();
 		return "index-"+contextPath.substring(1);

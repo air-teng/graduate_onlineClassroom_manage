@@ -80,6 +80,10 @@
 	margin-top:10px;
 	margin-bottom:5px;
 }
+/* .socialty-middle{
+	title:"风格2";
+	background:url(/img/ti.jpg) no-repeat;
+} */
 .discuss-row-user .discuss-row-user-pic{
 	width:30px;
 	height:30px;
@@ -102,4 +106,118 @@
 	font-family:"Times New Roman";
 	float:right;
 	margin-right:5px;
+}
+/*留言区*/
+.socialty-right{
+	background:url(/img/discuss-background.jpg) no-repeat;
+}
+.leave-message-row{
+	margin-top:10px;
+	margin-bottom:5px;
+}
+/* .socialty-middle{
+	title:"风格2";
+	background:url(/img/ti.jpg) no-repeat;
+} */
+.leave-message-row-user .leave-message-row-user-pic{
+	width:30px;
+	height:30px;
+	display:inline;
+	margin-left:1em;
+}
+.leave-message-row-user .leave-message-row-user-name{
+	font-size:16px;
+	font-family:"华文行楷";
+	display:inline;
+	cursor:pointer;
+}
+.leave-message-row-body{
+	font-size:14px;
+	font-family:"宋体";
+	text-indent:2em;
+}
+.leave-message-row-release-time{
+	font-size:14px;
+	font-family:"Times New Roman";
+	float:right;
+	margin-right:5px;
+}
+.leave-message-row-release-time span{
+	/* background:#ccc; */
+	margin-left:1em;
+}
+.leave-message-row-release-time span a{
+	cursor:pointer;
+	text-decoration:none;
+}
+/*教师回复*/
+.leave-message-reply-title{
+	font-size:16px;
+	font-family:"黑体";
+	color:green;
+	margin-left:1em;
+}
+.leave-message-reply-body{
+	margin-left:1em;
+	margin-right:3px;
+	font-size:14px;
+	font-family:"宋体";
+	background:green;
+	color:#fff;
+	/* text-indent:2em; */
+	border:1px dashed green;
+	padding:2px;
+}
+.leave-message-reply-row{
+	margin-top:-20px;
+}
+/*发言栏*/
+#my-word-div{
+	margin-top:20px;
+	margin-left:20em;
+}
+.my-word-title{
+	font-size:18px;
+	font-family:"黑体";
+	color:#159295;
+}
+.my-word-body{
+	display:inline;
+	float:left;
+	margin-right:10px;
+}
+.my-word-submit{
+	display:inline;
+}
+.my-word-to-discuss{
+	margin:10px;
+}
+.my-word-body textarea{
+	border-radius:10px;
+	padding:5px;
+}
+#my-word-div .my-word-body textarea:focus{
+	-moz-border-radius:10px !important;
+	-webkit-border-radius:10px !important;
+	box-shadow:10px 10px 10px #ccc inset;
+	padding:5px;
+}
+.my-word-submit button{
+	box-shadow:5px 5px 10px #000;
+}
+.my-word-submit button:active{
+	box-shadow:-5px -5px 10px #fff;
+}
+.my-word-to-discuss button{
+	margin-top:-10px;
+	font-size:18px;
+	font-family:"微软雅黑";
+	background:#000;
+	color:#fff;
+}
+.my-word-to-leave-message button{
+	font-size:18px;
+	font-family:"微软雅黑";
+	background:blue;
+	color:#fff;
 }

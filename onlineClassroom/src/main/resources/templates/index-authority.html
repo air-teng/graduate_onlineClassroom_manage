@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Free Responsive Admin Theme - ZONTAL</title>
+    <!-- BOOTSTRAP CORE STYLE  -->
+	<link th:href="@{/gate/assets/css/bootstrap.css}" href="../static/gate/assets/css/bootstrap.css" rel="stylesheet" />
+	<!-- FONT AWESOME ICONS  -->
+	<link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
+	<!-- CUSTOM STYLE  -->
+	<link th:href="@{/gate/assets/css/style.css}" href="../static/gate/assets/css/style.css" rel="stylesheet" />
+     <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+<script th:inline="javascript">
+	var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
+	if(userPermission == null){
+		var path = window.location.href;
+		window.location.href=path.split("/")[0]+"//"+path.split("/")[2];
+	}
+</script>
+</head>
+<body>
+	<div th:if="${session.userPermission!=null} ">
+	    <div th:replace="common/index-common :: index-header"></div>
+	    <!-- HEADER END-->
+	    <div th:replace="common/index-common :: index-personal-info"></div>
+	    <!-- LOGO HEADER END-->
+	    <div th:replace="common/index-common :: index-navicat"></div>
+    </div>
+    
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-head-line">Blank Page</h4>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-warning">
+                        This is blank page for which you can customize for your project. 
+                        Use this admin template 100% free to use for personal and commercial use which is crafted by 
+                        <br />
+                        <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap.com</a> . For more free templates and snippets keep looking <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap.com</a> . Hope you will like our work
+                  
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- CONTENT-WRAPPER SECTION END-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER SECTION END-->
+    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY SCRIPTS -->
+	<script th:src="@{/gate/assets/js/jquery-1.11.1.js}" src="../static/gate/assets/js/jquery-1.11.1.js"></script>
+	<!-- BOOTSTRAP SCRIPTS  -->
+	<script th:src="@{/gate/assets/js/bootstrap.js}" src="../static/gate/assets/js/bootstrap.js"></script>
+	<script th:src="@{/js/index-common.js}" src="../static/js/index-common.js"></script>
+</body>
+</html>
