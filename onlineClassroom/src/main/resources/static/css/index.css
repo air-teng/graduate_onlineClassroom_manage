@@ -31,3 +31,30 @@
     border-radius: 0.3rem;
     outline: 0;
 }
+/*课程列表*/
+#courseRows .course-detail-css,.course-classroom-css,.course-resource-css{
+	float:left;
+	box-shadow:2px 2px 5px #000;
+	border-radius:2px;
+	background:rgb(114,175,188);
+	font-size:16px;
+	color:#fff;
+	display:inline;
+	margin-left:5px;
+	margin-bottom:1em;
+}
+/*  #courseRows .course-detail-css{
+	margin-left:1em;
+} */
+/*
+#courseRows .course-classroom-css{
+	margin-top:70px;
+	margin-left:-80px;
+}
+#courseRows .course-resource-css{
+	margin-top:130px;
+	margin-left:-80px;
+} */
+#courseRows .course-detail:active{
+	box-shadow:2px 2px 5px #fff;
+}

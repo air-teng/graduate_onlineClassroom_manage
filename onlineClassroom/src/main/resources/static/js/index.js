@@ -1,13 +1,33 @@
 $(function(){
 	init();
+	courseInit();
+//	courseListSuggestion();
+})
+function courseListSuggestion(){
+	if(userPermission.identificationCode >= 2){
+		$("#alert-alert-success-location").append(
+				'<strong>'+userPermission.name+'</strong>'+
+				' 您好！以下是您所创建的所有课程。'+
+				'点击右侧 <a><i class="fa fa-plus fa-1x"></i></a> 可创建课程'+
+				',点击 <a><i class="fa fa-angle-double-right"></i></a> 可管理课程列表。'
+		);
+	}else{
+		$("#alert-alert-success-location").html(
+				userPermission.name+
+				'您好！以下是您所参与的所有课程'+
+				'点击<a><i class="fa fa-plus fa-2x"></i></a>可进行选课'
+		);
+	}
+}
+function courseInit(){
 	//为课程绑定点击事件
-	$("#courseRows").on("click",'[data-course-code]',function(){
-		window.location.href = $(this).attr("data-hrefPath");
+	$("#courseRows").on("click",'[class*="my-course-classroom-click"]',function(){
+		window.location.href = $(this).parent("div").attr("data-hrefPath");
 	})
 	//为有权限的人添加新增课堂的按钮
 	if(userPermission.identificationCode >= 2){//老师及管理员有新增课堂的权限
 		$("#alert-alert-success-location").append(
-				'<div style="display:inline-block;float:right;"><a title="创建课堂" id="new-course-enough-permission-button" data-toggle="modal" data-target="#new-course-modal"><i class="fa fa-plus fa-2x"></i></a>'+
+				'<div style="display:inline-block;float:right;"><a title="创建课程" id="new-course-enough-permission-button" data-toggle="modal" data-target="#new-course-modal"><i class="fa fa-plus fa-2x"></i></a>'+
 				'<a title="管理课程" id="manage-course-button"><i class="fa fa-angle-double-right"></i></a></div>');
 		var path = window.location.href;
 		$("#manage-course-button").attr("href",path.substr(0,path.lastIndexOf("/"))+"/user/"+userPermission.userAccount+"/course/tables");
@@ -57,7 +77,7 @@ $(function(){
 			)
 		});
 	}
-})
+}
 function init(){
 	var baseUrl = window.location.href.substr(0,window.location.href.indexOf("index")-1);
 	var param={"userAccount":userPermission.userAccount};
@@ -84,7 +104,7 @@ function init(){
 function initDashBoardCourse(courseList){
 	var formList = {};
 	formList.param0 = 
-				   '<div class="dashboard-div-wrapper bk-clr-one">'+
+				   '<div class="dashboard-div-wrapper my-course-classroom-click bk-clr-one" style="margin-bottom:5px;">'+
 					'	<i class="fa fa-venus dashboard-div-icon"></i>'+
 					'	<div class="progress progress-striped active">'+
 					'		<div class="progress-bar progress-bar-warning" role="progressbar"'+
@@ -95,7 +115,7 @@ function initDashBoardCourse(courseList){
 					'	<h5>Simple Text Here</h5>'+
 				'</div>';
 	formList.param1 = 
-							'<div class="dashboard-div-wrapper bk-clr-two">'+
+							'<div class="dashboard-div-wrapper my-course-classroom-click bk-clr-two" style="margin-bottom:5px;">'+
 					'	<i class="fa fa-edit dashboard-div-icon"></i>'+
 					'	<div class="progress progress-striped active">'+
 					'		<div class="progress-bar progress-bar-danger" role="progressbar"'+
@@ -105,7 +125,7 @@ function initDashBoardCourse(courseList){
 					'	<h5>Simple Text Here</h5>'+
 					'</div>';
 	   formList.param2 = 
-					'	<div class="dashboard-div-wrapper bk-clr-three">'+
+					'	<div class="dashboard-div-wrapper my-course-classroom-click bk-clr-three" style="margin-bottom:5px;">'+
 						'	<i class="fa fa-cogs dashboard-div-icon"></i>'+
 						'	<div class="progress progress-striped active">'+
 						'		<div class="progress-bar progress-bar-success" role="progressbar"'+
@@ -113,9 +133,9 @@ function initDashBoardCourse(courseList){
 						'			style="width: 40%"></div>'+
 						'	</div>'+
 						'	<h5>Simple Text Here</h5>'+
-					'</div>'
+					'</div>';
 	  formList.param3 = 
-							 '	<div class="dashboard-div-wrapper bk-clr-four">'+
+							 '	<div class="dashboard-div-wrapper my-course-classroom-click bk-clr-four" style="margin-bottom:5px;">'+
 								'<i class="fa fa-bell-o dashboard-div-icon"></i>'+
 								'<div class="progress progress-striped active">'+
 									'<div class="progress-bar progress-bar-primary" role="progressbar"'+
@@ -132,8 +152,10 @@ function initDashBoardCourse(courseList){
 		   str = str+
 				 '<div class="col-md-3 col-sm-3 col-xs-6" data-course-code="'+(i+1)+'">'+
 				   formList[formListMem]+
+				   '<button onclick="jumpToDetail(\''+courseList[i].courseCode+'\')" class="course-detail-css">课程详情</button>'+
+				   '<button onclick="jumpToCrmList(\''+courseList[i].courseCode+'\')" class="course-classroom-css">课堂列表</button>'+
+				   '<button onclick="jumpToResource(\''+courseList[i].courseCode+'\')" class="course-resource-css">学习资料</button>'+
 				 "</div>";
-		   
 	   }
 	   //替换
 	   $("#courseRows").html(str);
@@ -149,4 +171,58 @@ function initDashBoardCourse(courseList){
 		   //样式修改
 		   $("#courseRows div[data-course-code]").css({"cursor":"pointer"});
 	   }
+}
+function　jumpToDetail(courseCode){
+	var path = window.location.href;
+	var basePath = path.split("/")[0]+"//"+path.split("/")[2]+"/user/"+userPermission.userAccount+"/course/";
+	$.ajax({
+		url:basePath+"changeCourseSession",
+		async:false,//同步
+		type:"POST",
+		data:{"courseCode":courseCode},
+		success: function(res){
+			if(res.status == "true"){
+				window.location.href = basePath + courseCode + "/manage";
+			}
+		},
+		error: function(){
+			window.location.href = href_path.substr(0,href_path2.indexOf("course")+6)+"/error";
+		}
+	})
+}
+function　jumpToCrmList(courseCode){
+	var path = window.location.href;
+	var basePath = path.split("/")[0]+"//"+path.split("/")[2]+"/user/"+userPermission.userAccount+"/course/";
+	$.ajax({
+		url:basePath+"changeCourseSession",
+		async:false,//同步
+		type:"POST",
+		data:{"courseCode":courseCode},
+		success: function(res){
+			if(res.status == "true"){
+				window.location.href = basePath + courseCode + "/classrooms";
+			}
+		},
+		error: function(){
+			window.location.href = href_path.substr(0,href_path2.indexOf("course")+6)+"/error";
+		}
+	})
+}
+function　jumpToResource(courseCode){
+	var path = window.location.href;
+	var basePath = path.split("/")[0]+"//"+path.split("/")[2]+"/user/"+userPermission.userAccount+"/course/";
+	$.ajax({
+		url:basePath+"changeCourseSession",
+		async:false,//同步
+		type:"POST",
+		data:{"courseCode":courseCode},
+		success: function(res){
+			if(res.status == "true"){
+				window.location.href = basePath + courseCode + "/source";
+			}
+		},
+		error: function(){
+			window.location.href = href_path.substr(0,href_path2.indexOf("course")+6)+"/error";
+		}
+	})
 }

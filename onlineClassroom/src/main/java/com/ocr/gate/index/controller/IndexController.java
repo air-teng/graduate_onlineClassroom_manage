@@ -2,6 +2,7 @@ package com.ocr.gate.index.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,9 +71,10 @@ public class IndexController {
 	public String registerOk() {
 		return "registerOk";
 	}
-	@RequestMapping(value="personalInfo")
-	public String personalInfo() {
-		return "personalInfo";
+	@RequestMapping(value= {"personalInfo","sociaty","message","email"},method=RequestMethod.GET)
+	public String personalInfo(HttpServletRequest request) {
+		String contextPath = request.getServletPath();
+		return "index-"+contextPath.substring(1);
 	}
 	@RequestMapping(value="/index",method=RequestMethod.GET)
 	public String index() {

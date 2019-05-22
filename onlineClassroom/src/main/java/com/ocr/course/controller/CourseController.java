@@ -43,6 +43,7 @@ public class CourseController {
 	@RequestMapping(value="changeCourseSession",method=RequestMethod.POST)
 	@ResponseBody
 	public AjaxResult changeCourseSession(String courseCode,HttpSession session) {
+		session.setAttribute("courseName", courseService.getByCourseCode(courseCode).getCourseName());
 		session.setAttribute("courseCode", courseCode);
 		return AjaxResult.oK();
 	}
@@ -85,6 +86,7 @@ public class CourseController {
 		List<Course> allCourse = courseService.getAllCourse(userAccount);
 		if(allCourse != null) {
 			session.setAttribute("courseCode", allCourse.get(0).getCourseCode());
+			session.setAttribute("courseName", allCourse.get(0).getCourseName());
 		}else {
 			session.setAttribute("courseCode", "000000-00000-0");
 		}

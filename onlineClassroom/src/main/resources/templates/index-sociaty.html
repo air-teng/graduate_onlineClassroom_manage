@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Free Responsive Admin Theme - ZONTAL</title>
+    <!-- BOOTSTRAP CORE STYLE  -->
+	<link th:href="@{/gate/assets/css/bootstrap.css}" href="../static/gate/assets/css/bootstrap.css" rel="stylesheet" />
+	<!-- FONT AWESOME ICONS  -->
+	<link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
+	<!-- CUSTOM STYLE  -->
+	<link th:href="@{/gate/assets/css/style.css}" href="../static/gate/assets/css/style.css" rel="stylesheet" />
+	<link th:href="@{/css/index-sociaty.css}" href="../static/css/index-sociaty.css" rel="stylesheet" />
+     <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+<script th:inline="javascript">
+	var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
+	if(userPermission == null){
+		var path = window.location.href;
+		window.location.href=path.split("/")[0]+"//"+path.split("/")[2];
+	}
+</script>
+</head>
+<body>
+	<div th:if="${session.userPermission!=null} ">
+	    <div th:replace="common/index-common :: index-header"></div>
+	    <!-- HEADER END-->
+	    <div th:replace="common/index-common :: index-personal-info"></div>
+	    <!-- LOGO HEADER END-->
+	    <div th:replace="common/index-common :: index-navicat"></div>
+    </div>
+    
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container" id="socialty-all-div">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-head-line" th:text="${session.courseName}"></h4>
+                    <div class="col-md-12 socialty-change">
+                    	<label for="">课程社区切换</label>
+	                   	<select name="courseCode">
+	                    	<option>读《白夜行》</option>
+	                    	<option>大学英语</option>
+	                    	<option>运筹学</option>
+	                    	<option>概率论与数理统计</option>
+	                    	<option>大学语文2</option>
+	                    </select>
+               		 </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                	<div class="socialty-left" id="socialty-call-board-left">
+                		<div class="area-title">公告区</div>
+                		<div class="socialty-bulletin">
+                			<div class="socialty-tilte"><a>资料上传通知</a></div>
+                			<div class="socialty-simple-body">课堂资料已上传，在第二堂课里面，请大家...</div>
+                			<div class="socialty-release-time">发布时间：2019-5-21 19:00</div>
+                		</div>
+                		<div class="socialty-bulletin">
+                			<div class="socialty-tilte"><a>有关课堂变更的通知</a></div>
+                			<div class="socialty-simple-body">第二讲课堂时间由周一上午调整到周三晚上上</div>
+                			<div class="socialty-release-time">发布时间：2019-5-21 09:00</div>
+                		</div>
+                		<div class="socialty-bulletin">
+                			<div class="socialty-tilte"><a>有关开课的通知</a></div>
+                			<div class="socialty-simple-body">5-18号正式开课，请大家互相通知</div>
+                			<div class="socialty-release-time">发布时间：2019-5-18 08:00</div>
+                		</div>
+                		<div class="socialty-bulletin">
+                			<div class="socialty-tilte"><a>课程疑问解答</a></div>
+                			<div class="socialty-simple-body">欢迎大家选择这门课程，大家有什么疑问...</div>
+                			<div class="socialty-release-time">发布时间：2019-5-17 19:20</div>
+                		</div>
+                	</div>
+                    <div class="socialty-middle" id="socialty-discuss">
+                    	<div class="area-title">讨论区</div> 
+                    	<div class="discuss-row">
+                    		<div class="discuss-row-user">
+	                    		<img th:src="@{/img/earth.jpg}" class="discuss-row-user-pic"></img>
+	                    		<div class="discuss-row-user-name"><a>滕华林</a></div>
+                    		</div>
+                    		<div class="discuss-row-body">大家有《白夜行》这本书吗？可以借给我看看吗</div>
+                    		<div class="discuss-row-release-time">2019-5-21 13:50:43</div>
+                    	</div>
+                    	<br/>
+                    	<div class="discuss-row">
+                    		<div class="discuss-row-user">
+	                    		<img th:src="@{/img/earth.jpg}" class="discuss-row-user-pic"></img>
+	                    		<div class="discuss-row-user-name"><a>滕华林</a></div>
+                    		</div>
+                    		<div class="discuss-row-body">我想拿来预习一下，但是图书馆现在借不到</div>
+                    		<div class="discuss-row-release-time">2019-5-21 13:50:55</div>
+                    	</div>
+                    	<br/>
+                    	<div class="discuss-row">
+                    		<div class="discuss-row-user">
+	                    		<img th:src="@{/img/dogandcat.jpg}" class="discuss-row-user-pic"></img>
+	                    		<div class="discuss-row-user-name"><a>杨川</a></div>
+                    		</div>
+                    		<div class="discuss-row-body">小飞飞那里不是有一本嘛，你可以找他借一下</div>
+                    		<div class="discuss-row-release-time">2019-5-21 13:51:24</div>
+                    	</div>
+                    	<br/>
+                    	<div class="discuss-row">
+                    		<div class="discuss-row-user">
+	                    		<img th:src="@{/img/zhuyin.png}" class="discuss-row-user-pic"></img>
+	                    		<div class="discuss-row-user-name"><a>朱茵</a></div>
+                    		</div>
+                    		<div class="discuss-row-body">我还有其他东野硅谷的书，你们要不要</div>
+                    		<div class="discuss-row-release-time">2019-5-21 13:52:35</div>
+                    	</div>
+                    	<br/>
+                    	<div class="discuss-row">
+                    		<div class="discuss-row-user">
+	                    		<img th:src="@{/img/boyandrabbit.jpg}" class="discuss-row-user-pic"></img>
+	                    		<div class="discuss-row-user-name"><a>滕云飞</a></div>
+                    		</div>
+                    		<div class="discuss-row-body">我这里有《解忧杂货店》、《嫌疑人X的献身》、《白夜行》这几本书，我现在在看《解忧杂货店》，你们有需要的可以联系我哈。</div>
+                    		<div class="discuss-row-release-time">2019-5-21 13:54:30</div>
+                    	</div>
+                    	<br/>
+                    </div>
+                    <div class="socialty-right" id="socialty-leave-message">
+                    	<div class="area-title">留言区</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- CONTENT-WRAPPER SECTION END-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER SECTION END-->
+    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY SCRIPTS -->
+	<script th:src="@{/gate/assets/js/jquery-1.11.1.js}" src="../static/gate/assets/js/jquery-1.11.1.js"></script>
+	<!-- BOOTSTRAP SCRIPTS  -->
+	<script th:src="@{/gate/assets/js/bootstrap.js}" src="../static/gate/assets/js/bootstrap.js"></script>
+	<script th:src="@{/js/index-common.js}" src="../static/js/index-common.js"></script>
+</body>
+</html>

@@ -26,85 +26,14 @@
 </script>
 </head>
 <body>
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<strong>Email: </strong><span id="supportEmail"></span> &nbsp;&nbsp; <strong>Support:
-					</strong><span id="supportPhone"></span>
-				</div>
-
-			</div>
-		</div>
-	</header>
-	<!-- HEADER END-->
-	<div class="navbar navbar-inverse set-radius-zero">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.html"> <!-- <img
-					th:src="@{/img/logo.png}" src="../static/img/logo.png" /> -->
-				</a>
-
-			</div>
-
-			<div class="left-div">
-				<div class="user-settings-wrapper">
-					<ul class="nav">
-
-						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#" aria-expanded="false"> <span
-								class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
-						</a>
-							<div class="dropdown-menu dropdown-settings">
-								<div class="media">
-									<a class="media-left" href="#"> <img
-										id="avatar-my" th:src="@{/img/avatar.jpg}" src="../static/img/avatar.jpg" alt="" class="img-rounded" />
-									</a>
-									<div class="media-body">
-										<h4 class="media-heading" id="userNameText"></h4>
-										<h5>Developer Or Designer</h5>
-									</div>
-								</div>
-								<hr />
-								<h5>
-									<strong>Personal Bio : </strong>
-								</h5>
-								<span id="personalBioText"></span>
-								<hr />
-								<a href="#" id="full-profile" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a
-									href="/logout" class="btn btn-danger btn-sm">Logout</a>
-
-							</div></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+	<div th:if="${session.userPermission!=null} ">
+		<div th:replace="common/index-common :: index-header"></div>
+		<!-- HEADER END-->
+		<div th:replace="common/index-common :: index-personal-info"></div>
+		<!-- LOGO HEADER END-->
+		<div th:replace="common/index-common :: index-navicat"></div>
 	</div>
-	<!-- LOGO HEADER END-->
-	<section class="menu-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="navbar-collapse collapse ">
-						<ul id="menu-top" class="nav navbar-nav navbar-right">
-							<li><a class="menu-top-active" href="#">Dashboard</a></li>
-							<li><a href="ui.html">UI Elements</a></li>
-							<li><a href="table.html">Data Tables</a></li>
-							<li><a href="forms.html">Forms</a></li>
-							<li><a href="login.html">Login Page</a></li>
-							<li><a href="/personalInfo">个人主页</a></li>
-						</ul>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
+	
 	<div th:if="${session.userPermission!=null and session.userPermission.identificationCode ge 2} ">
 		<div th:replace="common/operationCourse :: createCourse"></div>
 	 </div> 
@@ -113,17 +42,28 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="page-head-line">Dashboard</h4>
+					<h4 class="page-head-line">课程看板</h4>
 
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="alert alert-success" id="alert-alert-success-location">This is a simple admin
-						template that can be used for your small project or may be large
-						projects. This is free for personal and commercial use.
-					</div>
+					<div class="alert alert-success" id="alert-alert-success-location">
+					<span style="font-size:16px;" th:if="${session.userPermission!=null and session.userPermission.identificationCode ge 2} ">
+						<strong><span th:text="${session.userPermission.name}"></span></strong>
+						 您好！以下是所创建的所有课程的列表信息。
+						点击课程名区域即可进入课堂。
+						点击右侧 <a><i class="fa fa-plus fa-1x"></i></a> 可创建课程
+						,点击 <a><i class="fa fa-angle-double-right"></i></a> 可管理课程列表。
+					</span>
+					<span style="font-size:16px;" th:if="${session.userPermission!=null and session.userPermission.identificationCode le 1} ">
+						<strong><span th:text="${session.userPermission.name}"></span></strong>
+						 您好！以下是您参与的所有课程的列表信息。
+						 点击课程名区域即可进入课堂。
+						点击右侧 <a><i class="fa fa-plus fa-1x"></i></a> 可进行选课或者取消选课操作。
+					</span>
+				</div>
 				</div>
 			</div>
 			<div class="row" id="courseRows">
@@ -351,7 +291,8 @@
 	<script th:src="@{/gate/assets/js/jquery-1.11.1.js}" src="../static/gate/assets/js/jquery-1.11.1.js"></script>
 	<!-- BOOTSTRAP SCRIPTS  -->
 	<script th:src="@{/gate/assets/js/bootstrap.js}" src="../static/gate/assets/js/bootstrap.js"></script>
-	<script th:src="@{/js/common-head.js}" src="../static/js/common-head.js"></script>
+	<script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+	<script th:src="@{/js/index-common.js}" src="../static/js/index-common.js"></script>
 	<script th:src="@{/js/index.js}" src="../static/js/index.js"></script>
 	<script th:src="@{/js/operationCourse.js}" src="../static/js/operationCourse.js"></script>
 	<script th:src="@{/js/common.js}" src="../static/js/common.js"></script>

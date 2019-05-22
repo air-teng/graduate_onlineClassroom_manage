@@ -1,0 +1,105 @@
+/*总体布局设置*/
+#socialty-call-board-left{
+	width:25%;
+	border-right:3px solid #ccc;
+	height:700px;
+	overflow:auto;
+}
+#socialty-discuss{
+	border-right:3px solid #ccc;
+	width:50%;
+	height:700px;
+	overflow:auto;
+}
+#socialty-leave-message{
+	width:25%;
+	height:700px;
+	overflow:auto;
+}
+.area-title{
+	font-size:18px;
+	font-family:"华文行楷";
+}
+.socialty-tilte a{
+	cursor:pointer;
+}
+#socialty-call-board-left,#socialty-discuss,#socialty-leave-message{
+	display:inline;
+	float:left;
+}
+/* #socialty-call-board-left .area-title:after{
+	 content: '';
+     position: absolute;
+     width: 285px;
+     height: 2px;
+     background: #ccc;
+     top: 7%;
+     transform: translateX(-55px);
+} */
+/*头部*/
+.socialty-change{
+	display:inline;
+	font-size:18px;
+	font-family:"微软雅黑";
+	margin-top:-30px;
+	margin-bottom:10px;
+	margin-left:-15px;
+}
+/* .socialty-change:after{
+	 content: '';
+     position: absolute;
+     width: 285px;
+     height: 2px;
+     background: #ccc;
+     top: 10px;
+     transform: translateX(-200px);
+     transform: translateY(1.5em);
+} */
+/*公告区*/
+#socialty-call-board-left .socialty-tilte{
+	font-size:16px;
+	font-family:"黑体";
+}
+#socialty-call-board-left .socialty-simple-body{
+	font-size:12px;
+	font-family:"宋体";
+	text-indent:2em;
+}
+.socialty-release-time{
+	font-size:14px;
+	font-family:"Times New Roman";
+	/* float:right; */
+}
+.socialty-bulletin{
+	margin-top:10px;
+	border:1px dashed;
+	padding:5px;
+}
+/*讨论区*/
+.discuss-row{
+	margin-top:10px;
+	margin-bottom:5px;
+}
+.discuss-row-user .discuss-row-user-pic{
+	width:30px;
+	height:30px;
+	display:inline;
+	margin-left:1em;
+}
+.discuss-row-user .discuss-row-user-name{
+	font-size:16px;
+	font-family:"华文行楷";
+	display:inline;
+	cursor:pointer;
+}
+.discuss-row-body{
+	font-size:14px;
+	font-family:"宋体";
+	text-indent:2em;
+}
+.discuss-row-release-time{
+	font-size:14px;
+	font-family:"Times New Roman";
+	float:right;
+	margin-right:5px;
+}
