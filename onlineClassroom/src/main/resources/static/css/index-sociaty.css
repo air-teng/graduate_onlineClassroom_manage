@@ -87,6 +87,7 @@
 .discuss-row-user .discuss-row-user-pic{
 	width:30px;
 	height:30px;
+	border-radius:15px;
 	display:inline;
 	margin-left:1em;
 }
@@ -122,6 +123,7 @@
 .leave-message-row-user .leave-message-row-user-pic{
 	width:30px;
 	height:30px;
+	border-radius:15px;
 	display:inline;
 	margin-left:1em;
 }

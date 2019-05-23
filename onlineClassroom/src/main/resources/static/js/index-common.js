@@ -5,7 +5,7 @@ $(function(){
 /*动态状态设置*/
 function activeStatusSet(){
 	var path = window.location.href;
-	if(path.split("/")[3] == "index"){
+	if(path.split("/")[3] == "index" || path.split("/")[3] == "preIndex"){
 		$("#menu-top").find("a[class='menu-top-active']").removeClass("menu-top-active");
 		$("#menu-top").find("a[href='/index']").addClass("menu-top-active");
 		$("#menu-top").find("a[href='/index']").attr("href","#");
@@ -25,6 +25,10 @@ function activeStatusSet(){
 		$("#menu-top").find("a[class='menu-top-active']").removeClass("menu-top-active");
 		$("#menu-top").find("a[href='/email']").addClass("menu-top-active");
 		$("#menu-top").find("a[href='/email']").attr("href","#");
+	}else if(path.split("/")[3] == "authority"){
+		$("#menu-top").find("a[class='menu-top-active']").removeClass("menu-top-active");
+		$("#menu-top").find("a[href='/authority']").addClass("menu-top-active");
+		$("#menu-top").find("a[href='/authority']").attr("href","#");
 	}
 }
 function technologySupport(){

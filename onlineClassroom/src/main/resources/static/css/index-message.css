@@ -1,0 +1,139 @@
+/*总体布局设置*/
+#index-message-left{
+	display:inline-block;
+	width:30%;
+	border-right:3px solid #ccc;
+	height:700px;
+	overflow:auto;
+}
+#index-message-right{
+	/* background:#f0f0f0; */
+	display:inline-block;
+	width:60%;
+	height:700px;
+	overflow:auto;
+}
+/*邮件导航栏*/
+.index-message-nav-row{
+	padding-top:1em;
+	border-bottom:1px solid #e3e6e4;
+	padding-bottom:2em;
+}
+.index-message-nav-row:hover{
+	background:#e7e7e7;
+	cursor:pointer;
+}
+.index-message-nav-send-user{
+	display:inline;
+	float:left;
+}
+.index-message-nav-send-text{
+	display:inline;
+}
+.index-message-nav-send-user-pic{
+	width:60px;
+	height:60px;
+	border-radius:30px;
+}
+.index-message-nav-send-text .index-message-nav-send-name{
+	font-size:16px;
+	font-family:"微软雅黑";
+	font-weight:bold;
+	margin-left:4em;
+}
+.index-message-nav-send-text .index-message-nav-send-title{
+	font-size:14px;
+	font-family:"微软雅黑";
+	margin-left:4em;
+}
+.index-message-nav-send-text .index-message-nav-send-simple-body .simple-body{
+	font-size:14px;
+	font-family:"楷体";
+	text-indent:5em;
+	/* margin-left:4em; */
+}
+.simple-time{
+	float:right;
+	font-family:"Times New Roman";
+	margin-right:1em;
+}
+/*邮件主体栏*/
+.index-message-body{
+	margin-left:2em;
+}
+.index-message-body-title{
+	font-size:24px;
+	font-family:"微软雅黑";
+}
+.index-message-send-user-pic{
+	width:30px;
+	height:30px;
+	border-radius:15px;
+}
+.index-message-send-user-div{
+	margin:1em 0 2em 0;
+}
+.index-message-send-user{
+	display:inline;
+}
+.index-message-send-info{
+	display:inline;
+}
+#index-message-right .index-message-send-user-name{
+	font-size:14px;
+	font-family:"微软雅黑";
+}
+#index-message-right .index-message-send-time{
+	font-size:14px;
+	font-family:"Times New Roman";
+}
+.index-message-send-body{
+	padding:1em;
+	text-indent:2em;
+	font-size:16px;
+	height:400px;
+	width:90%;
+	margin:0 5% 0 5%;
+	font-family:"宋体";
+	border:2px dashed #ccc;
+	overflow:auto;
+}
+.index-message-send-attachment{
+	margin:5% 5% 0 5%;
+}
+.index-message-send-attachment-title{
+	font-size:16px;
+	font-family:"微软雅黑";
+	border-bottom:1px solid #f0f0f0;
+}
+.index-message-send-attachment-row{
+	margin:5px 5px 0 5px;
+}
+.attachment-row-name{
+	font-size:14px;
+	font-family:"黑体";
+	font-weight:bold;
+	display:inline;
+}
+.attachment-row-operation{
+	display:inline;
+	float:right;
+}
+.attachment-row-operation button{
+	background:#ccc;
+	color:#fff;
+	border-radius:5px;
+}
+.index-message-reply{
+	float:right;
+	margin-right:2em;
+}
+.index-message-reply button{
+	background:#36cb63;
+	color:#fff;
+	border-radius:5px;
+	box-shadow:2px 2px 2px #000;
+}
+.index-message-reply button:active{
+	box-shadow:2px 2px 2px #fff;
+}

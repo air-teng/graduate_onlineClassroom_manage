@@ -15,6 +15,7 @@
 	<link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
 	<!-- CUSTOM STYLE  -->
 	<link th:href="@{/gate/assets/css/style.css}" href="../static/gate/assets/css/style.css" rel="stylesheet" />
+	<link th:href="@{/css/index-message.css}" href="../static/css/index-message.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 <script th:inline="javascript">
 	var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
@@ -38,20 +39,102 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Blank Page</h4>
+                    <h4 class="page-head-line">
+						<select>
+							<option>收件箱</option>
+							<option>草稿箱</option>
+							<option>已发送</option>
+							<option>垃圾邮件</option>
+							<option>已删除</option>
+						</select>
+					</h4>
 
                 </div>
 
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="alert alert-warning">
-                        This is blank page for which you can customize for your project. 
-                        Use this admin template 100% free to use for personal and commercial use which is crafted by 
-                        <br />
-                        <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap.com</a> . For more free templates and snippets keep looking <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap.com</a> . Hope you will like our work
-                  
-                    </div>
+                	<div class="index-message-left" id="index-message-left">
+                		<div class="index-message-nav-row">
+                			<div class="index-message-nav-send-user">
+                				<img th:src="@{/img/earth.jpg}" class="index-message-nav-send-user-pic"></img>
+                			</div>
+                			<div class="index-message-nav-send-text">
+	                			<div class="index-message-nav-send-name">滕华林</div>
+	                			<div class="index-message-nav-send-title">书籍名单</div>
+	                			<div class="index-message-nav-send-simple-body">
+	                				<span class="simple-body">你能不能把你整理的东野硅谷的书籍名单发给我一...</span>
+	                				<span class="simple-time">5-22</span>
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="index-message-nav-row">
+                			<div class="index-message-nav-send-user">
+                				<img th:src="@{/img/dogandcat.jpg}" class="index-message-nav-send-user-pic"></img>
+                			</div>
+                			<div class="index-message-nav-send-text">
+	                			<div class="index-message-nav-send-name">杨川</div>
+	                			<div class="index-message-nav-send-title">帮我看个问题</div>
+	                			<div class="index-message-nav-send-simple-body">
+	                				<span class="simple-body">我这边数据库在建表时，外键报错，你看看是怎么...</span>
+	                				<span class="simple-time">5-21</span>
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="index-message-nav-row">
+                			<div class="index-message-nav-send-user">
+                				<img th:src="@{/img/dogandcat.jpg}" class="index-message-nav-send-user-pic"></img>
+                			</div>
+                			<div class="index-message-nav-send-text">
+	                			<div class="index-message-nav-send-name">杨川</div>
+	                			<div class="index-message-nav-send-title">前端参数传不过来</div>
+	                			<div class="index-message-nav-send-simple-body">
+	                				<span class="simple-body">后台打断点，发现前端的参数显示为空，不知道是...</span>
+	                				<span class="simple-time">5-20</span>
+	                			</div>
+                			</div>
+                		</div>
+                		<div class="index-message-nav-row">
+                			<div class="index-message-nav-send-user">
+                				<img th:src="@{/img/fish.jpg}" class="index-message-nav-send-user-pic"></img>
+                			</div>
+                			<div class="index-message-nav-send-text">
+	                			<div class="index-message-nav-send-name">杨舒然</div>
+	                			<div class="index-message-nav-send-title">选课事情</div>
+	                			<div class="index-message-nav-send-simple-body">
+	                				<span class="simple-body">你们上课选课是选哪个老师的啊，我和老幺还没有...</span>
+	                				<span class="simple-time">5-19</span>
+	                			</div>
+                			</div>
+                		</div>
+                	</div>
+                	<div class="index-message-right" id="index-message-right">
+                		<div class="index-message-body">
+                			<div class="index-message-body-title">书籍名单</div>
+                			<div class="index-message-send-user-div">
+                				<div class="index-message-send-user">
+                					<img th:src="@{/img/earth.jpg}" class="index-message-send-user-pic"></img>
+                				</div>
+                				<div class="index-message-send-info">
+                					<span class="index-message-send-user-name">滕华林</span>
+                					<span class="index-message-send-time">5-22 16:25</span>
+                					<span class="index-message-reply"><button>回复</button></span>
+                				</div>
+                			</div>
+                			<div class="index-message-send-body">
+                				你能不能把你整理的东野硅谷的书籍名单发给我一下，这边有很多人都要，你发给他们一下，我打算去图书馆看看能不能借到。
+                			</div>
+                			<div class="index-message-send-attachment">
+                				<div class="index-message-send-attachment-title">附件</div>
+                				<div class="index-message-send-attachment-body">
+                					<div class="index-message-send-attachment-row">
+                						<div class="attachment-row-name">需要书籍名单的人员名单.xls</div>
+                						<div class="attachment-row-operation"><button>下载</button></div>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                	</div>
                 </div>
 
             </div>
@@ -75,5 +158,11 @@
 	<!-- BOOTSTRAP SCRIPTS  -->
 	<script th:src="@{/gate/assets/js/bootstrap.js}" src="../static/gate/assets/js/bootstrap.js"></script>
 	<script th:src="@{/js/index-common.js}" src="../static/js/index-common.js"></script>
+	<script type="text/javascript">
+		$(".index-message-nav-row").on("click",function(){
+			$(".index-message-nav-row").css({"background":"#fff"});
+			$(this).css({"background":"#e7e7e7"});
+		})
+	</script>
 </body>
 </html>
