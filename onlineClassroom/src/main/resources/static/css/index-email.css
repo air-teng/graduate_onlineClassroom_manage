@@ -1,0 +1,80 @@
+.email-body{
+	margin-left:5%;
+	width:90%;
+	height:600px;
+	padding:3em;
+	box-shadow:-5px -5px 10px #ccc;
+	border-right:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	border-radius:5px;
+}
+.email-send{
+	width:90%;
+	margin-left:5%;
+	margin-top:10px;
+	height:50px;
+/* 	border-left:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc; */
+}
+.email-body label{
+	font-size:16px;
+	font-family:"微软雅黑";
+	margin-right:1em;
+}
+.email-body div{
+	margin:1em;
+}
+.email-body input{
+	border-radius:5px;
+	height:2.5em;
+	padding:5px;
+}
+label[for="user_title"]{
+	margin-right:2em;
+}
+input[name="user_title"]{
+	width:500px;
+}
+textarea[name="email_content"]{
+	margin-left:3em;
+	border-radius:10px;
+	padding:5px;
+}
+textarea[name="email_content"]:focus{
+	box-shadow:0 0 20px #ccc inset;
+	border-radius:10px;
+}
+.attachment-file-row{
+	font-size:1em;
+	margin-left:1em;
+	cursor:pointer;
+}
+.attatchment-label{
+	font-size:2em;
+	margin-left:1em;
+	cursor:pointer;
+}
+.email-send-button{
+	float:right;
+	font-size:24px;
+}
+.email-send-text button{
+	text-align:center;
+	font-size:24px;
+	border:1px solid #ccc;
+	width:80px;
+	height:2em;
+	margin-left:47%;
+	cursor:pointer;
+	background-color:#209172;
+	color:#fff;
+	box-shadow:0px 0px 10px #000;
+	border-radius:10px;
+}
+/* .email-send-text button{
+	
+} */
+.email-send-text  button:active{
+	box-shadow:5px 5px 10px #fff;
+}

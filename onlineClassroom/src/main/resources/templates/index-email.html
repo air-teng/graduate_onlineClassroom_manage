@@ -15,6 +15,7 @@
 	<link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
 	<!-- CUSTOM STYLE  -->
 	<link th:href="@{/gate/assets/css/style.css}" href="../static/gate/assets/css/style.css" rel="stylesheet" />
+	<link th:href="@{/css/index-email.css}" href="../static/css/index-email.css" rel="stylesheet" />
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 <script th:inline="javascript">
 	var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
@@ -38,20 +39,41 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="page-head-line">Blank Page</h4>
+                    <h4 class="page-head-line">邮件发送</h4>
 
                 </div>
 
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="alert alert-warning">
-                        This is blank page for which you can customize for your project. 
-                        Use this admin template 100% free to use for personal and commercial use which is crafted by 
-                        <br />
-                        <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap.com</a> . For more free templates and snippets keep looking <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap.com</a> . Hope you will like our work
-                  
-                    </div>
+                	<div class="email-body">
+		                   	<div class="email-target-user-account">
+		                   		<label for="user_account">收件人账号</label>
+		                   		<input name="user_account"></input>
+		                   	</div>
+		                   	<div class="email-target-user-name">
+		                   		<label for="user_name">收件人姓名</label>
+		                   		<input name="user_name"></input>
+		                   	</div>
+		                   	<div class="email-target-user-title">
+		                   		<label for="user_title">主题</label>
+		                   		<input name="user_title"></input>
+		                   	</div>
+		                   	<div class="email-content">
+		                   		<label for="email_content">内容</label><br/>
+		                   		<textarea name="email_content" cols="80" rows="6"></textarea>
+		                   	</div>
+		                   	<div class="email-attachment">
+		                   		<label for="email_attachment">附件</label><br/>
+		                   		<div class="attachment-file-row">
+		                   			<input type="file"></input>
+		                   		</div>
+		                   		<a class="attatchment-label"><i class="fa fa-plus-square"></i></a>
+		                   	</div>
+                   	</div>
+                   	<div class="email-send">
+                   		<div class="email-send-text"><button>发送</button></div>
+                   	</div>
                 </div>
 
             </div>
