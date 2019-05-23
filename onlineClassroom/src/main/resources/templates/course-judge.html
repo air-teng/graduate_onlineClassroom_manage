@@ -9,6 +9,12 @@
         <link th:href="@{/info/assets/styles.css}" href="../static/info/assets/styles.css" rel="stylesheet" media="screen"/>
         <link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
         <link th:href="@{/info/assets/DT_bootstrap.css}" href="../static/info/assets/DT_bootstrap.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/css/operationCourse.css}" href="../static/css/operationCourse.css" rel="stylesheet" media="screen"/>
+        <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="vendors/flot/excanvas.min.js"></script><![endif]-->
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <script th:src="@{/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js}" src="../static/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
         <script th:inline="javascript">
 			var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
@@ -26,9 +32,38 @@
         
             <div class="row-fluid">
                 <div th:replace="common/info-course-common :: info-course-nav"></div>
+                
                 <!--/span-->
                 <div class="span9" id="content">
-						请求出错！
+
+        		<div class="row-fluid">
+            <!-- block -->
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">课程评价</div>
+                </div>
+                <div class="block-content collapse in">
+				   	<div class="course-score">
+				   		<div class="get-score-content">
+				   		<div class="get-score-content-title">课程内容</div>
+				   		<div class="get-score-content-score"></div>
+					   	</div> 
+					   	<div class="get-score-teacher">
+					   		<div class="get-score-teacher-title">教师讲授</div>
+					   		<div class="get-score-teacher-score"></div>
+					   	</div> 
+					   	<div class="get-score-result">
+					   		<div class="get-score-result-title">学习效果</div>
+					   		<div class="get-score-result-score"></div>
+					   	</div> 
+				   	</div>
+				   	<div class="course-suggestion">
+				   		<div class="course-suggestion-title">匿名建议</div>
+				   		<textarea class="course-suggestion-content"></textarea>
+				   	</div>
+				 </div>
+				</div>
+				</div>
                 </div>
             </div>
             <hr/>
@@ -40,15 +75,12 @@
 
         <script th:src="@{/info/vendors/jquery-1.9.1.js}" src="../static/info/vendors/jquery-1.9.1.js"></script>
         <script th:src="@{/info/bootstrap/js/bootstrap.min.js}" src="../static/info/bootstrap/js/bootstrap.min.js"></script>
-        <!--  -->
-        <!-- <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script> -->
-		<!-- <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-		<!--  -->
         <script th:src="@{/info/vendors/datatables/js/jquery.dataTables.min.js}" src="../static/info/vendors/datatables/js/jquery.dataTables.min.js"></script>
+        <!-- <script th:src="@{/info/assets/scripts.js}" src="../static/info/assets/scripts.js"></script> -->
         <script th:src="@{/info/assets/DT_bootstrap.js}" src="../static/info/assets/DT_bootstrap.js"></script>
         <script th:src="@{/js/course-manage-page-common.js}" src="../static/js/course-manage-page-common.js"></script>
+        <script th:src="@{/js/course-tables.js}" src="../static/js/course-tables.js"></script>
         <script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
-        <script th:src="@{/js/course-classrooms.js}" src="../static/js/course-classrooms.js"></script>
     </body>
 
 </html>

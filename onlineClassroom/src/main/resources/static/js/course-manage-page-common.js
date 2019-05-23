@@ -77,6 +77,9 @@ function jumpURL(){
 	$("#manage").attr("href", href_path2.substr(0,href_path2.indexOf("course")+6)+"/"+courseCodeFromSession+"/manage");
 	$("#classrooms").attr("href", href_path2.substr(0,href_path2.indexOf("course")+6)+"/"+courseCodeFromSession+"/classrooms");
 	$("#source").attr("href", href_path2.substr(0,href_path2.indexOf("course")+6)+"/"+courseCodeFromSession+"/source");
+	$("#statistics").attr("href", href_path2.substr(0,href_path2.indexOf("course")+6)+"/"+courseCodeFromSession+"/statistics");
+	$("#judge").attr("href", href_path2.substr(0,href_path2.indexOf("course")+6)+"/"+courseCodeFromSession+"/judge");
+	$("#feedback").attr("href", href_path2.substr(0,href_path2.indexOf("course")+6)+"/"+courseCodeFromSession+"/feedback");
 }
 function jumpStyle(){
 	//当前进入的是哪个页面，则触发哪个按钮
