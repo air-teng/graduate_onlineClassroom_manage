@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-    
+<html lang="en">
     <head>
         <title>Tables</title>
         <!-- Bootstrap -->
@@ -9,7 +8,7 @@
         <link th:href="@{/info/assets/styles.css}" href="../static/info/assets/styles.css" rel="stylesheet" media="screen"/>
         <link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
         <link th:href="@{/info/assets/DT_bootstrap.css}" href="../static/info/assets/DT_bootstrap.css" rel="stylesheet" media="screen"/>
-        <link th:href="@{/css/operationCourse.css}" href="../static/css/operationCourse.css" rel="stylesheet" media="screen"/>
+        <link th:href="@{/css/course-judge.css}" href="../static/css/course-judge.css" rel="stylesheet" media="screen"/>
         <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="vendors/flot/excanvas.min.js"></script><![endif]-->
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -38,31 +37,58 @@
 
         		<div class="row-fluid">
             <!-- block -->
-            <div class="block">
-                <div class="navbar navbar-inner block-header">
-                    <div class="muted pull-left">课程评价</div>
-                </div>
-                <div class="block-content collapse in">
-				   	<div class="course-score">
-				   		<div class="get-score-content">
-				   		<div class="get-score-content-title">课程内容</div>
-				   		<div class="get-score-content-score"></div>
-					   	</div> 
-					   	<div class="get-score-teacher">
-					   		<div class="get-score-teacher-title">教师讲授</div>
-					   		<div class="get-score-teacher-score"></div>
-					   	</div> 
-					   	<div class="get-score-result">
-					   		<div class="get-score-result-title">学习效果</div>
-					   		<div class="get-score-result-score"></div>
-					   	</div> 
-				   	</div>
-				   	<div class="course-suggestion">
-				   		<div class="course-suggestion-title">匿名建议</div>
-				   		<textarea class="course-suggestion-content"></textarea>
-				   	</div>
-				 </div>
-				</div>
+		            <div class="block">
+		                <div class="navbar navbar-inner block-header">
+		                    <div class="muted pull-left">课程评价</div>
+		                </div>
+		                <div class="block-content collapse in">
+						   	<div class="course-score">
+						   		<div class="get-score-content">
+						   		<div class="get-score-content-title">课程内容</div>
+						   		<div class="get-score-content-score" >
+						   			<ul>
+							   			<li value="1"><i class="fa fa-star-o"></i></li>
+							   			<li value="2"><i class="fa fa-star-o"></i></li>
+							   			<li value="3"><i class="fa fa-star-o"></i></li>
+							   			<li value="4"><i class="fa fa-star-o"></i></li>
+							   			<li value="5"><i class="fa fa-star-o"></i></li>
+						   			</ul>
+						   			<div style="display:inline;margin-left:2em;"><span>0</span>分</div>
+						   		</div>
+							   	</div> 
+							   	<div class="get-score-teacher">
+							   		<div class="get-score-teacher-title">教师讲授</div>
+							   		<div class="get-score-teacher-score">
+							   			<ul>
+								   			<li value="1"><i class="fa fa-star-o"></i></li>
+								   			<li value="2"><i class="fa fa-star-o"></i></li>
+								   			<li value="3"><i class="fa fa-star-o"></i></li>
+								   			<li value="4"><i class="fa fa-star-o"></i></li>
+								   			<li value="5"><i class="fa fa-star-o"></i></li>
+						   				</ul>
+						   				<div style="display:inline;margin-left:2em;"><span>0</span>分</div>
+							   		</div>
+							   	</div> 
+							   	<div class="get-score-result">
+							   		<div class="get-score-result-title">学习效果</div>
+							   		<div class="get-score-result-score">
+							   			<ul>
+								   			<li value="1"><i class="fa fa-star-o"></i></li>
+								   			<li value="2"><i class="fa fa-star-o"></i></li>
+								   			<li value="3"><i class="fa fa-star-o"></i></li>
+								   			<li value="4"><i class="fa fa-star-o"></i></li>
+								   			<li value="5"><i class="fa fa-star-o"></i></li>
+						   				</ul>
+						   				<div style="display:inline;margin-left:2em;"><span>0</span>分</div>
+							   		</div>
+							   	</div> 
+						   	</div>
+						   	<div class="course-suggestion">
+						   		<div class="course-suggestion-title">匿名建议</div><br/>
+						   		<textarea class="course-suggestion-content" cols="30" rows="3"></textarea>
+						   	</div>
+						 </div>
+						</div>
 				</div>
                 </div>
             </div>
@@ -76,11 +102,10 @@
         <script th:src="@{/info/vendors/jquery-1.9.1.js}" src="../static/info/vendors/jquery-1.9.1.js"></script>
         <script th:src="@{/info/bootstrap/js/bootstrap.min.js}" src="../static/info/bootstrap/js/bootstrap.min.js"></script>
         <script th:src="@{/info/vendors/datatables/js/jquery.dataTables.min.js}" src="../static/info/vendors/datatables/js/jquery.dataTables.min.js"></script>
-        <!-- <script th:src="@{/info/assets/scripts.js}" src="../static/info/assets/scripts.js"></script> -->
         <script th:src="@{/info/assets/DT_bootstrap.js}" src="../static/info/assets/DT_bootstrap.js"></script>
         <script th:src="@{/js/course-manage-page-common.js}" src="../static/js/course-manage-page-common.js"></script>
-        <script th:src="@{/js/course-tables.js}" src="../static/js/course-tables.js"></script>
         <script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+        <script th:src="@{/js/course-judge.js}" src="../static/js/course-judge.js"></script>
     </body>
 
 </html>

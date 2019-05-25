@@ -55,6 +55,7 @@ public class CourseController {
 			course.setSelectTotal(0);//设置选课人数
 			courseService.save(course);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return AjaxResult.error(e.getMessage());
 		}
 		return AjaxResult.oK();

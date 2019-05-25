@@ -34,6 +34,9 @@ public class ClassroomServiceImpl implements ClassroomService {
 	public void save(Classroom classroom) {
 		//参数处理
 		Integer maxClassroomCode = classroomDao.getMaxClassroomCodeOfCourse(classroom.getCourseCode());
+		if(maxClassroomCode == null) {
+			maxClassroomCode = 0;
+		}
 		classroom.setClassroomCode(maxClassroomCode+1);
 		classroom.setParticipateTotal(0);
 		String disStr = DateUtilDeal.getDatePoor(classroom.getEndTime(),classroom.getStartTime());
