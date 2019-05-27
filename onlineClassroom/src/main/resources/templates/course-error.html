@@ -10,6 +10,15 @@
         <link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
         <link th:href="@{/info/assets/DT_bootstrap.css}" href="../static/info/assets/DT_bootstrap.css" rel="stylesheet" media="screen"/>
         <script th:src="@{/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js}" src="../static/info/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <style>
+        	.span9{
+        		margin:2em;
+        		padding:2em;
+        		background:url(/img/error.jpg);
+        		width:400px;
+        		height:400px;
+        	}
+        </style>
         <script th:inline="javascript">
 			var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
 			if(userPermission == null){
@@ -28,7 +37,7 @@
                 <div th:replace="common/info-course-common :: info-course-nav"></div>
                 <!--/span-->
                 <div class="span9" id="content">
-						请求出错！
+						请求出错！您可以刷新页面或者更换一个页面
                 </div>
             </div>
             <hr/>

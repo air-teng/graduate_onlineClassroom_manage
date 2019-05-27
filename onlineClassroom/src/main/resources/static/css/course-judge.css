@@ -1,4 +1,4 @@
-li{
+.course-score li{
 	list-style:none;
 	width:15px;
 	height:15px;
@@ -14,7 +14,7 @@ li{
 	float:left;
 	margin-right:1em;
 }
-ul{
+.course-score ul{
 	display:inline;
 	margin-left:0;
 }
