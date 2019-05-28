@@ -1,3 +1,15 @@
 #course-suggestion .odd td{
 	background:#efefef;
 } 
+#course-suggestion tr{
+	font-size:18px;
+	font-family:"楷体";
+}
+#course-suggestion th,td{
+	text-align:left;
+	margin-top:1em;
+	padding:10px;
+}
+#course-suggestion tr th:nth-child(2),td:nth-child(2){
+	width:80%;
+}
