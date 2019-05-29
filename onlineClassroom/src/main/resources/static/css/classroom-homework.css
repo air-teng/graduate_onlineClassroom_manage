@@ -88,20 +88,30 @@ label[for="exercise-problem-answer"],label[for="exercise-problem-subject"]{
 	font-family:"微软雅黑";
 	cursor:pointer;
 }
-#homework-list-table{
+#homework-list-table,#finished-or-modified-table{
 	cellspacing:10;
 }
 #homework-list-table td{
+	width:8em;
+}
+#finished-or-modified-table td{
 	width:8em;
 }
 #homework-list-table td a{
 	margin:2px;
 	cursor:pointer;
 }
+#finished-or-modified-table td a{
+	margin:2px;
+	cursor:pointer;
+}
 #homework-list-table td a:hover,a:visited{
 	background:#08c;
 }
-#homework-list{
+#finished-or-modified-table td a:hover{
+	background:#08c;
+}
+#homework-list,#homework-list-finished-or-modified{
 	margin:5px;
 }
 /*作业查看*/
@@ -179,4 +189,26 @@ label[for="exercise-problem-answer"],label[for="exercise-problem-subject"]{
 	width:200px;
 	height:50px;
 	box-shadow:0 0 0 #ccc;
+}
+/*作业提交/修改页面 */
+#homework-list-to-modify-table a{
+	cursor:pointer;
+}
+#homework-list-to-submit-table a{
+	cursor:pointer;
+}
+#homework-list-to-modify-table a:hover{
+	background:#08c;
+}
+#homework-list-to-submit-table a:hover{
+	background:#08c;
+}
+#homework-list-to-modify-table td{
+	width:10em;
+}
+#homework-list-to-submit-table td{
+	width:10em;
+}
+#homework-list-to-modify,#homework-list-to-submit{
+	margin:2em;
 }

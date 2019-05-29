@@ -4,6 +4,9 @@ $(function(){
 	//初始化客观题类型切换效果
 	initObjectTypeShift();
 	$("#homework-list-table").dataTable();
+	$("#finished-or-modified-table").dataTable();
+	$("#homework-list-to-submit-table").dataTable();
+	$("#homework-list-to-modify-table").dataTable();
 	//定义选择题点击事件
 	$(".homework-exercise-problem-row-object .chooice-item").on("click",function(){
 		$(this).parents("div").siblings().find("label").css({"background-color":"#fff"});
@@ -14,7 +17,7 @@ function initCurrentPageClick(){
 	$("#card-header-ul-li").on("click","li",function(){
 		var valueType = $(this).val();
 		
-		$("#object-create,#subject-create,#homework-list,#homework-operation").css({"display":"none"});
+		$("#object-create,#subject-create,#homework-list,#homework-operation,#homework-list-finished-or-modified").css({"display":"none"});
 		$("#card-header-ul-li li").css({"background":"#f8f9fa"})
 		
 		if(valueType == '1'){
@@ -27,10 +30,26 @@ function initCurrentPageClick(){
 			$("#homework-list").css({"display":"block"});
 			$("#card-header-ul-li li[value='3']").css({"background":"#08c"});
 		}else if(valueType == '4'){
-			$("#homework-operation").css({"display":"block"});
+			$("#homework-list-finished-or-modified").css({"display":"block"});
 			$("#card-header-ul-li li[value='4']").css({"background":"#08c"});
 		}
+		else if(valueType == '5'){
+			if(userPermission.identificationCode >= 2){
+				$("#homework-list-to-modify").css({"display":"block"});
+			}else{
+				$("#homework-list-to-submit").css({"display":"block"});
+			}
+			$("#card-header-ul-li li[value='5']").css({"background":"#08c"});
+		}
 	})
+}
+function submitHomeWork(){
+	if(userPermission.identificationCode >= 2){
+		$("#homework-list-to-modify").css({"display":"none"});
+	}else{
+		$("#homework-list-to-submit").css({"display":"none"});
+	}
+	$("#homework-operation").css({"display":"block"});
 }
 function initObjectTypeShift(){
 	
