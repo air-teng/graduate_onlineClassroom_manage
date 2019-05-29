@@ -47,10 +47,10 @@
                 <div class="col-md-12">
                     <div class="authority-nav" id="authority-nav">
                     	<ul>
-	                    		<li th:if="${session.userPermission!=null and session.userPermission.identificationCode != 3} "><a href="#authority-apply">权限申请<i class="fa fa-chevron-right"></i></a></li>
-	                    		<li th:if="${session.userPermission!=null and session.userPermission.identificationCode != 3} "><a href="#apply-res-check">我的申请<i class="fa fa-chevron-right"></i></a></li>
-                    			<li th:if="${session.userPermission!=null and session.userPermission.identificationCode == 3} "><a href="#reply-to-check">待审核<i class="fa fa-chevron-right"></i></a></li>
-                    			<li th:if="${session.userPermission!=null and session.userPermission.identificationCode == 3} "><a href="#history-reply" >历史审核<i class="fa fa-chevron-right"></i></a></li>
+	                    		<li th:if="${session.userPermission!=null and session.userPermission.identificationCode != 3} "><a href="#" id="authority-nav-apply">权限申请<i class="fa fa-chevron-right"></i></a></li>
+	                    		<li th:if="${session.userPermission!=null and session.userPermission.identificationCode != 3} "><a href="#" id="authority-nav-my">我的申请<i class="fa fa-chevron-right"></i></a></li>
+                    			<li th:if="${session.userPermission!=null and session.userPermission.identificationCode == 3} "><a href="#" id="authority-nav-todo">待审核<i class="fa fa-chevron-right"></i></a></li>
+                    			<li th:if="${session.userPermission!=null and session.userPermission.identificationCode == 3} "><a href="#" id="authority-nav-histroy">历史审核<i class="fa fa-chevron-right"></i></a></li>
                     	</ul>
                     </div>
                      <div class="authority-right" id="authority-right">
@@ -97,8 +97,8 @@
 								</div>
 							</div>
 						</div>
-	                    <div th:if="${session.userPermission!=null and session.userPermission.identificationCode == 3} "
-	                    	class="apply-res-check" id="apply-res-check">
+	                    <div id="my-history-apply" th:if="${session.userPermission!=null and session.userPermission.identificationCode != 3} "
+	                    	class="my-history-apply" style="display:none;">
 	                    	<div class="authority-apply-title">我的申请</div>
 	                    </div>
                    	    <div th:if="${session.userPermission!=null and session.userPermission.identificationCode == 3} " 
@@ -136,6 +136,15 @@
 	<script type="text/javascript">
 		$(function(){
 			$("#authority-nav li:nth-child(1)").css({"background":"#08c"});
+			
+			$("#authority-nav-apply").on("click",function(){
+				$("#my-history-apply").css({"display":"none"});
+				$("#authority-apply").css({"display":"block"});
+			})
+			$("#authority-nav-my").on("click",function(){
+				$("#authority-apply").css({"display":"none"});
+				$("#my-history-apply").css({"display":"block"});
+			})
 		})
 		$("#authority-nav li").on("click",function(){
 			/*样式*/

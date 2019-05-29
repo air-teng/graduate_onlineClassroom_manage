@@ -1,0 +1,182 @@
+.card-body{
+	padding:2em;
+}
+[class$="-title"]{
+	text-align:center;
+	margin:2em;
+	font-size:18px;
+	font-family:"微软雅黑";
+}
+#card-header-ul-li ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+#card-header-ul-li ul li{
+	list-style:none;
+	display:inline;
+	padding:5px;
+	margin:2px;
+	/* border:1px solid #ccc; */
+	cursor:pointer;
+}
+#card-header-ul-li ul li:hover{
+	background:#08c;
+}
+/*客观题创建*/
+#object-create-title{
+	margin:1em;
+}
+label[for="exercise-problem"],label[for^="exercise-chooice"]{
+	font-size:18px;
+	font-weight:bold;
+	font-family:"微软雅黑";
+}
+#object-create-body{
+	margin-left:1em;
+	font-size:18px;
+	font-family:"黑体";
+}
+#object-create-body textarea{
+	margin-left:2em;
+	border-radius:5px;
+	width:42em;
+	text-indent:2em;
+}
+#object-create-body-describe textarea[name="exercise-problem"]{
+	margin-bottom:2em;
+	height:8em;
+}
+#order-for-nth-homework{
+	margin-left:1em;
+}
+.order-for-nth-homework input[type="number"]{
+	width:80px;
+	border-radius:5px;
+}
+#object-create-answer{
+	margin-top:2em;
+	margin-left:2em;
+}
+#object-create-submit-button button{
+	margin-left:42em;
+	font-size:18px;
+	font-family:"微软雅黑";
+	cursor:pointer;
+}
+/*主观题创建*/
+#subject-create{
+	margin-left:1em;
+	font-size:18px;
+	font-family:"黑体";
+}
+textarea[name="exercise-problem-subject"],textarea[name="exercise-problem-subject-answer"]{
+	margin-left:2em;
+	border-radius:5px;
+	width:42em;
+	height:10em;
+	text-indent:2em;
+}
+label[for="exercise-problem-answer"],label[for="exercise-problem-subject"]{
+	font-size:18px;
+	font-weight:bold;
+	font-family:"微软雅黑";
+}
+#subject-create-submit-button button{
+	margin-left:38em;
+	font-size:18px;
+	font-family:"微软雅黑";
+	cursor:pointer;
+}
+#homework-list-table{
+	cellspacing:10;
+}
+#homework-list-table td{
+	width:8em;
+}
+#homework-list-table td a{
+	margin:2px;
+	cursor:pointer;
+}
+#homework-list-table td a:hover,a:visited{
+	background:#08c;
+}
+#homework-list{
+	margin:5px;
+}
+/*作业查看*/
+#order-for-nth-homework-title{
+	font-size:18px;
+	font-family:"微软雅黑";
+	padding:5px;
+}
+#order-for-nth-homework-title span{
+	font-size:20px;
+	color:red;
+	font-family:"times new roman";
+}
+/*选择题布局*/
+.row-object-order,.row-subject-order,{
+	display:inline;
+	font-weight:bold;
+	font-family:"times new roman";
+}
+.row-object-title,.row-subject-title{
+	margin-left:1em;
+	text-align:left;
+}
+.row-object-chooice label{
+	display:inline;
+	font-size:20px;
+	margin:5px;
+}
+.row-object-chooice{
+	font-size:16px;
+}
+.my-chooice,.modify-chooice,.modify-chooice label{
+	display:inline;
+	margin:1em;
+}
+[name="modify-score"]{
+	width:80px;
+	height:3em;
+}
+.row-object-chooice{
+	margin-left:1em;
+}
+/*主观题*/
+.homework-exercise-problem-row-subject label{
+	font-size:18px;
+	display:inline;
+	margin-left:2em;
+}
+.homework-exercise-problem-row-subject textarea{
+	font-size:16px;
+	margin-left:2em;
+	width:40em;
+	height:8em;
+	border-radius:5px;
+}
+#confirm-and-submit button{
+	text-align:center;
+	width:200px;
+	height:50px;
+	box-shadow:0 0 10px #ccc;
+}
+/*提交按钮*/
+#confirm-and-submit{
+	margin-top:2em;
+	margin-left:25em;
+}
+#confirm-and-submit button:hover{
+	text-align:center;
+	width:200px;
+	height:50px;
+	box-shadow:0 0 20px #ccc;
+}
+#confirm-and-submit button:active{
+	text-align:center;
+	width:200px;
+	height:50px;
+	box-shadow:0 0 0 #ccc;
+}

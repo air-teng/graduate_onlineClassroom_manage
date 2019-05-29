@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+
+  <title>SB Admin - Dashboard</title>
+
+  <!-- Custom fonts for this template-->
+  <link th:href="@{/course/vendor/fontawesome-free/css/all.min.css}" href="../static/course/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
+
+  <!-- Page level plugin CSS-->
+  <link th:href="@{/course/vendor/datatables/dataTables.bootstrap4.css}" href="../static/course/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet"/>
+  <link th:href="@{/gate/assets/css/font-awesome.css}" href="../static/gate/assets/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template-->
+  <link th:href="@{/course/css/sb-admin.css}" href="../static/course/css/sb-admin.css" rel="stylesheet"/>
+  <link th:href="@{/css/classroom.css}" href="../static/css/classroom.css" rel="stylesheet"/>
+  <link th:href="@{/css/classroom-homework.css}" href="../static/css/classroom-homework.css" rel="stylesheet"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}" href="../static/css/bootstrap/bootstrap.min.css"/>
+  <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap-table.min.css}" href="../static/css/bootstrap/bootstrap-table.min.css"/>
+<script th:inline="javascript">
+	var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
+	if(userPermission == null){
+		window.location.href=window.location.href.substr(0,window.location.href.indexOf("user")-1);
+	}
+</script>
+</head>
+<body id="page-top">
+  <!-- 顶部导航栏 -->
+  <div th:replace="common/classroom-common :: classroom-top-nav"></div>
+  
+  <!-- 增删改课堂 -->
+  <div th:if="${session.userPermission!=null and session.userPermission.identificationCode ge 2} ">
+ 	 <div th:replace="common/operationClassroom :: createClassroom"></div>
+ 	 <div th:replace="common/operationClassroom :: updateClassroom"></div>
+ 	 <div th:replace="common/operationClassroom :: deleteClassroom"></div>
+  </div>
+  <div th:replace="common/classroom-common :: other-classroom-select"></div>
+  
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <!-- 左边导航栏 -->
+  	<div th:replace="common/classroom-common :: classroom-left-nav"></div>
+
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+          </li>
+          <li class="breadcrumb-item active">Overview</li>
+        </ol>
+        <div class="card mb-3">
+          <div class="card-header" id="card-header-ul-li">
+            <!-- <i class="fas fa-table"></i> -->
+              <ul>
+          	  <li value="1" style="background:#08c;">客观题创建</li>
+          	  <li value="2">主观题创建</li>
+          	  <li value="3">作业列表</li>
+          	  <li value="4">作业修改/练习</li>
+          	  </ul>
+          	</div>
+          	<div class="card-body">
+	            <div class="table-responsive" id="card-body-div-parent">
+	            		<!-- <div>
+				        	<select id="exercise-problem-type">
+				        		<option value="object">客观题</option>
+				        		<option value="subject">主观题</option>
+				        	</select>
+			        	</div> -->
+			        	<div id="object-create" style="widhth:500px;height:700px;">
+			        		<div class="order-for-nth-homework">第<input type="number"></input>次作业，第<input type="number"></input>题。总分：<input type="number"></input>分。</div>
+			        		<div id="object-create-title">
+				        		<select id="exercise-problem-type">
+						        		<option value="0">AB型</option>
+						        		<option value="1">ABC型</option>
+						        		<option value="2">ABCD型</option>
+						        </select>
+				        		选择题
+			        		</div>
+			        		<div id="object-create-body">
+			        			<div id="object-create-body-describe">
+			        				<label for="exercise-problem">题目</label><br/>
+			        				<textarea name="exercise-problem"></textarea>
+			        			</div>
+			        			<div id="type_of_ab">
+			        				<label for="exercise-chooice-a">A</label><br/>
+			        				<textarea name="exercise-chooice-a"></textarea><br/>
+			        				<label for="exercise-chooice-b">B</label><br/>
+			        				<textarea name="exercise-chooice-b"></textarea><br/>
+			        			</div>
+			        			<div id="type_of_abc" style="display:none;">
+			        				<label for="exercise-chooice-a">A</label><br/>
+			        				<textarea name="exercise-chooice-a"></textarea><br/>
+			        				<label for="exercise-chooice-b">B</label><br/>
+			        				<textarea name="exercise-chooice-b"></textarea><br/>
+			        				<label for="exercise-chooice-c">C</label><br/>
+			        				<textarea name="exercise-chooice-c"></textarea><br/>
+			        			</div>
+			        			<div id="type_of_abcd" style="display:none;">
+			        				<label for="exercise-chooice-a">A</label><br/>
+			        				<textarea name="exercise-chooice-a"></textarea><br/>
+			        				<label for="exercise-chooice-b">B</label><br/>
+			        				<textarea name="exercise-chooice-b"></textarea><br/>
+			        				<label for="exercise-chooice-c">C</label><br/>
+			        				<textarea name="exercise-chooice-c"></textarea><br/>
+			        				<label for="exercise-chooice-d">D</label><br/>
+			        				<textarea name="exercise-chooice-d"></textarea><br/>
+			        			</div>
+			        		</div>
+			        		<div id="object-create-answer">
+			        			<div class="object-create-answer_title">
+			        			正确答案
+			        				<select id="type_of_ab_answer">
+				        				<option value="a">A</option>
+				        				<option value="b">B</option>
+				        			</select>
+				        			<select id="type_of_abc_answer" style="display:none;">
+				        				<option value="a">A</option>
+				        				<option value="b">B</option>
+				        				<option value="c">C</option>
+				        			</select>
+				        			<select id="type_of_abcd_answer" style="display:none;">
+				        				<option value="a">A</option>
+				        				<option value="b">B</option>
+				        				<option value="c">C</option>
+				        				<option value="d">D</option>
+				        			</select>
+			        			</div>
+			        		</div>
+			        		<div id="object-create-submit-button">
+			        			<button>创建</button>
+			        		</div>
+			        	</div>
+			        	<div id="subject-create" style="widhth:500px;height:700px;display:none;">
+			        		<div>
+			        				<div class="order-for-nth-homework">第<input type="number"></input>次作业，第<input type="number"></input>题。总分：<input type="number"></input>分。</div>
+			        				<label for="exercise-problem-subject">题目</label><br/>
+			        				<textarea name="exercise-problem-subject"></textarea><br/><br/>
+			        				<label for="exercise-problem-answer">答案参考</label><br/>
+			        				<textarea name="exercise-problem-subject-answer"></textarea>
+			        		</div>
+			        		<div id="subject-create-submit-button">
+			        			<button>创建</button>
+			        		</div>
+			        	</div>
+			        	<div id="homework-list" style="widhth:500px;height:700px;display:none;">
+			        		<div>
+			        				<table id="homework-list-table">
+			        					<thead>
+			        						<tr>
+			        							<th>作业序号</th>
+			        							<th>客观题数</th>
+			        							<th>客观题总分</th>
+			        							<th>主观题数</th>
+			        							<th>主观题总分</th>
+			        							<th>作业总分</th>
+			        							<th>发布日期</th>
+			        							<th>提交截止日期</th>
+			        							<th>操作</th>
+			        						</tr>
+			        					</thead>
+			        					<tbody>
+			        						<tr>
+			        							<td>第1次作业</td>
+			        							<td>5</td>
+			        							<td>30</td>
+			        							<td>2</td>
+			        							<td>20</td>
+			        							<td>50</td>
+			        							<td>2019-05-29 07:50</td>
+			        							<td>2019-05-30 19:00</td>
+			        							<td><a>发布</a><a>详情</a></td>
+			        						</tr>
+			        						<tr>
+			        							<td>第2次作业</td>
+			        							<td>10</td>
+			        							<td>50</td>
+			        							<td>0</td>
+			        							<td>0</td>
+			        							<td>50</td>
+			        							<td>2019-05-29 09:50</td>
+			        							<td>2019-05-31 19:00</td>
+			        							<td><a>发布</a><a>详情</a></td>
+			        						</tr>
+			        						<tr>
+			        							<td>第3次作业</td>
+			        							<td>10</td>
+			        							<td>50</td>
+			        							<td>5</td>
+			        							<td>50</td>
+			        							<td>100</td>
+			        							<td>待定</td>
+			        							<td>待定</td>
+			        							<td><a>发布</a><a>详情</a></td>
+			        						</tr>
+			        						<tr>
+			        							<td>第4次作业</td>
+			        							<td>3</td>
+			        							<td>30</td>
+			        							<td>2</td>
+			        							<td>20</td>
+			        							<td>50</td>
+			        							<td>待定</td>
+			        							<td>待定</td>
+			        							<td><a>发布</a><a>详情</a></td>
+			        						</tr>
+			        					</tbody>
+			        				</table>
+			        		</div>
+			        	</div>
+			        	<div id="homework-operation" style="widhth:500px;height:700px;display:none;">
+			        		<div>
+			        			<div id="order-for-nth-homework-title">
+			        			第<span class="homework-operation-nth">1</span>次作业，客观题共<span class="homework-operation-total-object">5</span>题/<span class="homework-operation-scores-object">30</span>分，客观题共<span class="homework-operation-total-subject">2</span>题/<span class="homework-operation-scores-subject">20</span>分。
+			        			总分：<span class="homework-operation-total-scores">50</span>分。
+			        			</div>
+			        			<div class="homework-exercise-problem-row-object" id="row-object-1">
+			        				<div class="row-object-title"><span class="row-object-order">1</span>.(<span class="row-object-score">6</span>分)采用贪心算法的最优装载问题的主要计算量在于将集装箱依其重量从小到大排序，故算法的时间复杂度（）。</div>
+			        				<div class="row-object-chooice">
+			        					<div class="chooice-a">
+			        						<label>A</label>
+			        						<span class="chooice-a-describe">O（n2n）</span>
+			        					</div>
+			        					<div class="chooice-a">
+			        						<label>B</label>
+			        						<span class="chooice-b-describe">O（nlogn）</span>
+			        					</div>
+			        					<div class="chooice-c">
+			        						<label>C</label>
+			        						<span class="chooice-c-describe">O（2n）</span>
+			        					</div>
+			        					<div class="chooice-d">
+			        						<label>D</label>
+			        						<span class="chooice-d-describe">O（n）</span>
+			        					</div>
+			        				</div>
+			        				<div>
+				        				<div class="my-chooice">
+				        						答案&nbsp;
+				        						<select>
+				        							<option value='a'>A</option>
+				        							<option value='b'>B</option>
+				        							<option value='c'>C</option>
+				        							<option value='d'>D</option>
+				        						</select>
+			        					</div>
+			        					<div class="modify-chooice">
+											<label for="modify-suggestion">评语</label>			        						
+											<textarea name="modify-suggestion"></textarea>			        						
+											<label for="modify-score">得分</label>			        						
+											<input type="number" name="modify-score"></input>		        						
+			        					</div>
+		        					</div>
+			        			</div>
+			        			<div class="homework-exercise-problem-row-object" id="row-object-2">
+			        				<div class="row-object-title"><span class="row-object-order">2</span>.(<span class="row-object-score">6</span>分)下面不是分支界限法搜索方式的是（）。</div>
+			        				<div class="row-object-chooice">
+			        					<div class="chooice-a">
+			        						<label>A</label>
+			        						<span class="chooice-a-describe"> 广度优先</span>
+			        					</div>
+			        					<div class="chooice-a">
+			        						<label>B</label>
+			        						<span class="chooice-b-describe">最小耗费优先</span>
+			        					</div>
+			        					<div class="chooice-c">
+			        						<label>C</label>
+			        						<span class="chooice-c-describe"> 最大效益优先</span>
+			        					</div>
+			        					<div class="chooice-d">
+			        						<label>D</label>
+			        						<span class="chooice-d-describe">深度优先</span>
+			        					</div>
+			        				</div>
+			        				<div>
+				        				<div class="my-chooice">
+				        						答案&nbsp;
+				        						<select>
+				        							<option value='a'>A</option>
+				        							<option value='b'>B</option>
+				        							<option value='c'>C</option>
+				        							<option value='d'>D</option>
+				        						</select>
+			        					</div>
+			        					<div class="modify-chooice">
+											<label for="modify-suggestion">评语</label>			        						
+											<textarea name="modify-suggestion"></textarea>			        						
+											<label for="modify-score">得分</label>			        						
+											<input type="number" name="modify-score"></input>		        						
+			        					</div>
+		        					</div>
+			        			</div>
+			        			<div class="homework-exercise-problem-row-object" id="row-object-3">
+			        				<div class="row-object-title"><span class="row-object-order">3</span>.(<span class="row-object-score">6</span>分)下列算法中通常以自底向上的方式求解最优解的是（）。</div>
+			        				<div class="row-object-chooice">
+			        					<div class="chooice-a">
+			        						<label>A</label>
+			        						<span class="chooice-a-describe">备忘录法</span>
+			        					</div>
+			        					<div class="chooice-a">
+			        						<label>B</label>
+			        						<span class="chooice-b-describe">动态规划法</span>
+			        					</div>
+			        					<div class="chooice-c">
+			        						<label>C</label>
+			        						<span class="chooice-c-describe">动态规划法</span>
+			        					</div>
+			        					<div class="chooice-d">
+			        						<label>D</label>
+			        						<span class="chooice-d-describe">动态规划法</span>
+			        					</div>
+			        				</div>
+			        				<div>
+				        				<div class="my-chooice">
+				        						答案&nbsp;
+				        						<select>
+				        							<option value='a'>A</option>
+				        							<option value='b'>B</option>
+				        							<option value='c'>C</option>
+				        							<option value='d'>D</option>
+				        						</select>
+			        					</div>
+			        					<div class="modify-chooice">
+											<label for="modify-suggestion">评语</label>			        						
+											<textarea name="modify-suggestion"></textarea>			        						
+											<label for="modify-score">得分</label>			        						
+											<input type="number" name="modify-score"></input>		        						
+			        					</div>
+		        					</div>
+			        			</div>
+			        			<div class="homework-exercise-problem-row-object" id="row-object-4">
+			        				<div class="row-object-title"><span class="row-object-order">4</span>.(<span class="row-object-score">6</span>分)回溯法解旅行售货员问题时的解空间树是（）。</div>
+			        				<div class="row-object-chooice">
+			        					<div class="chooice-a">
+			        						<label>A</label>
+			        						<span class="chooice-a-describe">子集树</span>
+			        					</div>
+			        					<div class="chooice-a">
+			        						<label>B</label>
+			        						<span class="chooice-b-describe">排列树</span>
+			        					</div>
+			        					<div class="chooice-c">
+			        						<label>C</label>
+			        						<span class="chooice-c-describe">深度优先生成树</span>
+			        					</div>
+			        					<div class="chooice-d">
+			        						<label>D</label>
+			        						<span class="chooice-d-describe">广度优先生成树</span>
+			        					</div>
+			        				</div>
+			        				<div>
+				        				<div class="my-chooice">
+				        						答案&nbsp;
+				        						<select>
+				        							<option value='a'>A</option>
+				        							<option value='b'>B</option>
+				        							<option value='c'>C</option>
+				        							<option value='d'>D</option>
+				        						</select>
+			        					</div>
+			        					<div class="modify-chooice">
+											<label for="modify-suggestion">评语</label>			        						
+											<textarea name="modify-suggestion"></textarea>			        						
+											<label for="modify-score">得分</label>			        						
+											<input type="number" name="modify-score"></input>		        						
+			        					</div>
+		        					</div>
+			        			</div>
+			        			<div class="homework-exercise-problem-row-object" id="row-object-5">
+			        				<div class="row-object-title"><span class="row-object-order">5</span>.(<span class="row-object-score">6</span>分) 二分搜索算法是利用（）实现的算法。</div>
+			        				<div class="row-object-chooice">
+			        					<div class="chooice-a">
+			        						<label>A</label>
+			        						<span class="chooice-a-describe">分治策略</span>
+			        					</div>
+			        					<div class="chooice-a">
+			        						<label>B</label>
+			        						<span class="chooice-b-describe">动态规划法</span>
+			        					</div>
+			        					<div class="chooice-c">
+			        						<label>C</label>
+			        						<span class="chooice-c-describe">贪心法</span>
+			        					</div>
+			        					<div class="chooice-d">
+			        						<label>D</label>
+			        						<span class="chooice-d-describe">回溯法</span>
+			        					</div>
+			        				</div>
+			        				<div>
+				        				<div class="my-chooice">
+				        						答案&nbsp;
+				        						<select>
+				        							<option value='a'>A</option>
+				        							<option value='b'>B</option>
+				        							<option value='c'>C</option>
+				        							<option value='d'>D</option>
+				        						</select>
+			        					</div>
+			        					<div class="modify-chooice">
+											<label for="modify-suggestion">评语</label>			        						
+											<textarea name="modify-suggestion"></textarea>			        						
+											<label for="modify-score">得分</label>			        						
+											<input type="number" name="modify-score"></input>		        						
+			        					</div>
+		        					</div>
+			        			</div>
+			        			<div class="homework-exercise-problem-row-subject" id="homework-exercise-problem-row-subject-6">
+			        				<div class="row-subject-title"><span class="row-subject-order">6</span>.(<span class="row-subject-score">10</span>分) 陈述算法在最坏情况下的时间复杂度和平均时间复杂度；这两种评估算法复杂性的方法各自有什么实际意义？</div>
+			        				<div class="stu-answer"><label>学生答案</label><br/><textarea></textarea></div>
+			        				<div class="teacher-suggestion"><label>教师评语</label><br/><textarea></textarea><label>得分:</label><input type="number"></input></div>
+			        			</div>
+			        			<div class="homework-exercise-problem-row-subject" id="homework-exercise-problem-row-subject-7">
+			        				<div class="row-subject-title"><span class="row-subject-order">7</span>.(<span class="row-subject-score">10</span>分) 阐述动态规划算法与贪心算法的区别，它们都有那些优势和劣势？</div>
+			        				<div class="stu-answer"><label>学生答案</label><br/><textarea></textarea></div>
+			        				<div class="teacher-suggestion"><label>教师评语</label><br/><textarea></textarea><label>得分:</label><input type="number"></input></div>
+			        			</div>
+			        		</div>
+			        		<div id="confirm-and-submit"><button>提交</button></div>
+			        	</div>
+	            </div>
+          </div>
+          <div class="card-footer small text-muted"></div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright © OCR Development Team 2019</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" id="classroom-user-logout" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap core JavaScript-->
+  <script th:src="@{/course/vendor/jquery/jquery.min.js}" src="../static/course/vendor/jquery/jquery.min.js"></script>
+  <script th:src="@{/course/vendor/bootstrap/js/bootstrap.bundle.min.js}" src="../static/course/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script th:src="@{/course/vendor/jquery-easing/jquery.easing.min.js}" src="../static/course/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script th:src="@{/course/vendor/chart.js/Chart.min.js}" src="../static/course/vendor/chart.js/Chart.min.js"></script>
+  <script th:src="@{/course/vendor/datatables/jquery.dataTables.js}" src="../static/course/vendor/datatables/jquery.dataTables.js"></script>
+  <script th:src="@{/course/vendor/datatables/dataTables.bootstrap4.js}" src="../static/course/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script th:src="@{/course/js/sb-admin.min.js}" src="../static/course/js/sb-admin.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script th:src="@{/course/js/demo/datatables-demo.js}" src="../static/course/js/demo/datatables-demo.js"></script>
+  <script th:src="@{/js/operationClassroom.js}" src="../static/js/operationClassroom.js"></script>
+  <script th:src="@{/js/classroom-onLine.js}" src="../static/js/classroom-onLine.js"></script>
+  <script th:src="@{/js/classroom.js}" src="../static/js/classroom.js"></script>
+  <script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+  <script th:src="@{/js/classroom-work.js}" src="../static/js/classroom-work.js"></script>
+
+</body>
+
+</html>

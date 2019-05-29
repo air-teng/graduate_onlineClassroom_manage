@@ -83,16 +83,24 @@ function homeWorkFinished(){
 		   };
 		   var series= [{
 		        type: 'column',
-		            name: '客观题数目',
-		            data: [10, 5, 5, 0, 20]
-		        }, {
+		            name: '客观题得分',
+		            data: [30, 45, 40, 0, 50]
+		        },{
 		            type: 'column',
-		            name: '主观题数目',
-		            data: [2, 3, 0, 4, 3]
+		            name: '客观题可得分',
+		            data: [30, 50, 50, 0, 50]
+		        },{
+		            type: 'column',
+		            name: '主观题得分',
+		            data: [15, 40, 80, 95, 0]
+		        },{
+		            type: 'column',
+		            name: '主观题可得分',
+		            data: [20, 50, 100, 100, 0]
 		        }, {
 		            type: 'spline',
-		            name: '客观题得分',
-		            data: [92, 95, 80, 90, 85],
+		            name: '可得分',
+		            data: [50, 100, 150, 100, 50],
 		            marker: {
 		                lineWidth: 2,
 		                lineColor: Highcharts.getOptions().colors[5],
@@ -100,8 +108,8 @@ function homeWorkFinished(){
 		            }
 		        }, {
 		            type: 'spline',
-		            name: '主观题得分',
-		            data: [75, 82, 85, 100, 90],
+		            name: '实际得分',
+		            data: [45, 82, 120, 95, 40],
 		            marker: {
 		                lineWidth: 2,
 		                lineColor: Highcharts.getOptions().colors[4],

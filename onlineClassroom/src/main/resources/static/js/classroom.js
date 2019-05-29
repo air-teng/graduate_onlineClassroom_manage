@@ -139,11 +139,11 @@ function initNavOfTopAndLeft(globalClassroom){
 	//初始化左边导航栏的值
 	jumpBasePath=basePath+"/"+globalClassroom.classroomCode;
 	$("#classroom-left-nav-onLine").attr("href",jumpBasePath);
-	$("#classroom-left-nav-dashboard").attr("href",jumpBasePath+"/dashboard");
+	$("#classroom-left-nav-homework").attr("href",jumpBasePath+"/homework");
 	$("#classroom-top-nav-pages-login").attr("href",jumpBasePath+"/login");
 	$("#classroom-top-nav-pages-forgot-password").attr("href",jumpBasePath+"/forgot-password");
 	$("#classroom-top-nav-pages-404").attr("href",jumpBasePath+"/404");
 	$("#classroom-top-nav-pages-blank").attr("href",jumpBasePath+"/blank");
-	$("#classroom-left-nav-charts").attr("href",jumpBasePath+"/charts");
+	$("#classroom-left-nav-notes").attr("href",jumpBasePath+"/notes");
 	$("#classroom-left-nav-source").attr("href",jumpBasePath+"/source");
 }
