@@ -16,6 +16,8 @@
 	<!-- CUSTOM STYLE  -->
 	<link th:href="@{/gate/assets/css/style.css}" href="../static/gate/assets/css/style.css" rel="stylesheet" />
 	<link th:href="@{/css/index-authority.css}" href="../static/css/index-authority.css" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.min.css}" href="../static/css/bootstrap/bootstrap.min.css"/>
+ 	<link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap-table.min.css}" href="../static/css/bootstrap/bootstrap-table.min.css"/>
      <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 <script th:inline="javascript">
 	var userPermission = [[${session.userPermission}]];//以thymeleaf的形式从session中取出值
@@ -98,17 +100,87 @@
 							</div>
 						</div>
 	                    <div id="my-history-apply" th:if="${session.userPermission!=null and session.userPermission.identificationCode != 3} "
-	                    	class="my-history-apply" style="display:none;">
+	                    	class="my-history-apply" style="display:none;width:1000px;height:700px;">
 	                    	<div class="authority-apply-title">我的申请</div>
 	                    </div>
                    	    <div th:if="${session.userPermission!=null and session.userPermission.identificationCode == 3} " 
-                   	    	class="reply-to-check" id="reply-to-check">
+                   	    	class="reply-to-check" id="reply-to-check" style="width:1000px;height:700px;">
                    	    	<div class="reply-to-check-title">待审核</div>
+                   	    	<div class="reply-to-check-body">
+                   	    		<table id="reply-to-check-table">
+                   	    			<thead>
+                   	    				<tr>
+                   	    					<th>审核单号</th>
+                   	    					<th>申请账号</th>
+                   	    					<th>当前身份</th>
+                   	    					<th>申请身份</th>
+                   	    				</tr>
+                   	    			</thead>
+                   	    			<tbody>
+                   	    				<tr>
+                   	    					<td>55270101</td>
+                   	    					<td>5120155527</td>
+                   	    					<td>学生</td>
+                   	    					<td>管理员</td>
+                   	    				</tr>
+                   	    				<tr>
+                   	    					<td>55270102</td>
+                   	    					<td>5120153185</td>
+                   	    					<td>学生</td>
+                   	    					<td>管理员</td>
+                   	    				</tr>
+                   	    			</tbody>
+                   	    		</table>
                    	    	</div>
+                   	    </div>
                     	<div th:if="${session.userPermission!=null and session.userPermission.identificationCode == 3} "
-                    		class="history-reply" id="history-reply">
+                    		class="history-reply" id="history-reply" style="display:none;width:1000px;height:700px;">
                     			<div class="history-reply-title">历史审核</div>
-                    		</div>
+                    			<div class="history-reply-body">
+                   	    		<table id="history-reply-table">
+                   	    			<thead>
+                   	    				<tr>
+                   	    					<th>审核单号</th>
+                   	    					<th>申请账号</th>
+                   	    					<th>当前身份</th>
+                   	    					<th>申请身份</th>
+                   	    					<th>审核人账号</th>
+                   	    					<th>审核时间</th>
+                   	    					<th>审核结果</th>
+                   	    				</tr>
+                   	    			</thead>
+                   	    			<tbody>
+                   	    				<tr>
+                   	    					<td>55270101</td>
+                   	    					<td>5120155527</td>
+                   	    					<td>学生</td>
+                   	    					<td>管理员</td>
+                   	    					<td>81689896</td>
+                   	    					<td>2019-05-29 19:00</td>
+                   	    					<td>通过</td>
+                   	    				</tr>
+                   	    				<tr>
+                   	    					<td>55270102</td>
+                   	    					<td>5120153185</td>
+                   	    					<td>学生</td>
+                   	    					<td>管理员</td>
+                   	    					<td>81689896</td>
+                   	    					<td>2019-05-29 19:00</td>
+                   	    					<td>拒绝</td>
+                   	    				</tr>
+                   	    				<tr>
+                   	    					<td>55270103</td>
+                   	    					<td>5120153191</td>
+                   	    					<td>学生</td>
+                   	    					<td>教师</td>
+                   	    					<td>OCR自动审核</td>
+                   	    					<td>2019-05-29 19:00</td>
+                   	    					<td>通过</td>
+                   	    				</tr>
+                   	    			</tbody>
+                   	    		</table>
+                   	    	</div>
+                    	</div>
                     </div>
                 </div>
 
@@ -132,18 +204,30 @@
 	<script th:src="@{/gate/assets/js/jquery-1.11.1.js}" src="../static/gate/assets/js/jquery-1.11.1.js"></script>
 	<!-- BOOTSTRAP SCRIPTS  -->
 	<script th:src="@{/gate/assets/js/bootstrap.js}" src="../static/gate/assets/js/bootstrap.js"></script>
+	<script th:src="@{/course/vendor/datatables/jquery.dataTables.js}" src="../static/course/vendor/datatables/jquery.dataTables.js"></script>
 	<script th:src="@{/js/index-common.js}" src="../static/js/index-common.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			$("#reply-to-check-table").dataTable();
+			$("#history-reply-table").dataTable();
+			
 			$("#authority-nav li:nth-child(1)").css({"background":"#08c"});
 			
 			$("#authority-nav-apply").on("click",function(){
-				$("#my-history-apply").css({"display":"none"});
+				$("#my-history-apply,#authority-apply,#reply-to-check,#history-reply").css({"display":"none"});
 				$("#authority-apply").css({"display":"block"});
 			})
 			$("#authority-nav-my").on("click",function(){
-				$("#authority-apply").css({"display":"none"});
+				$("#my-history-apply,#authority-apply,#reply-to-check,#history-reply").css({"display":"none"});
 				$("#my-history-apply").css({"display":"block"});
+			})
+			$("#authority-nav-todo").on("click",function(){
+				$("#my-history-apply,#authority-apply,#reply-to-check,#history-reply").css({"display":"none"});
+				$("#reply-to-check").css({"display":"block"});
+			})
+			$("#authority-nav-histroy").on("click",function(){
+				$("#my-history-apply,#authority-apply,#reply-to-check,#history-reply").css({"display":"none"});
+				$("#history-reply").css({"display":"block"});
 			})
 		})
 		$("#authority-nav li").on("click",function(){

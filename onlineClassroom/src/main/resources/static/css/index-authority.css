@@ -107,3 +107,44 @@ label[for="stu_account"],label[for="target_identification"]{
 input[name="my_email"]{
 	margin-left:2em;
 }
+/*表格*/
+#reply-to-check,#history-reply{
+	padding-top:5em;
+}
+#reply-to-check-table,#history-reply-table{
+	border-top:2px solid #ccc;
+	padding:2em;
+}
+#reply-to-check th,td{
+	font-size:16px;
+	font-family:"微软雅黑";
+	width:8em;
+}
+#history-reply  th,td{
+	font-size:16px;
+	font-family:"微软雅黑";
+	width:8em;
+}
+#history-reply-table_length,#reply-to-check-table_length,#history-reply-table_filter,#reply-to-check-table_filter{
+	display:none;
+}
+#history-reply-table_paginate,#reply-to-check-table_paginate{
+	padding-left:35em;
+}
+#history-reply-table_paginate a{
+	font-family:"times new Roman";
+	font-size:20px;
+	margin-right:10px;
+	cursor:pointer;
+}
+#reply-to-check-table_paginate a{
+	font-family:"times new Roman";
+	font-size:20px;
+	margin-right:10px;
+	cursor:pointer;
+}
+[class$="title"]{
+	font-size:20px;
+	font-family:"黑体";
+	text-align:center;
+}
