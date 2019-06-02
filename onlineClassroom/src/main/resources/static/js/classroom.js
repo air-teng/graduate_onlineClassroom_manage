@@ -39,6 +39,9 @@ $(function(){
 					//初始化课堂信息
 					initClassroomPage(data.object);
 					initNavOfTopAndLeft(data.object);
+					var path = window.location.href;
+					var len = path.split("/").length;
+					if(path.split("/")[len-1] == "info")
 					initOnLinePageClassroom(data.object);
 				}
 			}
@@ -139,6 +142,7 @@ function initNavOfTopAndLeft(globalClassroom){
 	//初始化左边导航栏的值
 	jumpBasePath=basePath+"/"+globalClassroom.classroomCode;
 	$("#classroom-left-nav-onLine").attr("href",jumpBasePath);
+	$("#classroom-left-nav-info").attr("href",jumpBasePath+"/info");
 	$("#classroom-left-nav-homework").attr("href",jumpBasePath+"/homework");
 	$("#classroom-top-nav-pages-login").attr("href",jumpBasePath+"/login");
 	$("#classroom-top-nav-pages-forgot-password").attr("href",jumpBasePath+"/forgot-password");

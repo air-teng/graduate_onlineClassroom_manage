@@ -1,4 +1,12 @@
 $(function(){
+	if(userPermission.identificationCode >= 2){
+		$("#object-create").css({"display":"block"});
+		$("#card-header-ul-li li[value='1']").css({"background":"#08c"});
+	}else{
+		$("#homework-list").css({"display":"block"});
+		$("#card-header-ul-li li[value='3']").css({"background":"#08c"});
+	}
+	
 	//初始化页面标题点击效果
 	initCurrentPageClick();
 	//初始化客观题类型切换效果
@@ -17,7 +25,7 @@ function initCurrentPageClick(){
 	$("#card-header-ul-li").on("click","li",function(){
 		var valueType = $(this).val();
 		
-		$("#object-create,#subject-create,#homework-list,#homework-operation,#homework-list-finished-or-modified").css({"display":"none"});
+		$("#object-create,#subject-create,#homework-list,#homework-operation,#homework-list-finished-or-modified,#homework-list-to-submit").css({"display":"none"});
 		$("#card-header-ul-li li").css({"background":"#f8f9fa"})
 		
 		if(valueType == '1'){

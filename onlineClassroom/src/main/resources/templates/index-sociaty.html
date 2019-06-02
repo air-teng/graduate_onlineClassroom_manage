@@ -173,7 +173,7 @@
                     	<br/>
                     </div>
                     <div class="socialty-right" id="socialty-leave-message">
-                    	<div class="area-title">留言区</div>
+                    	<div class="area-title" id="leave-message-row-top">留言区</div>
                     	<div class="leave-message-row">
                     		<div class="leave-message-row-user">
 	                    		<img th:src="@{/img/boyandrabbit.jpg}" class="leave-message-row-user-pic"></img>
@@ -223,15 +223,15 @@
 					<div class="col-md-12">
 						<div id="my-word-div">
 							<div class="my-word-title">我的发言</div>
-							<div class="my-word-body">
+							<div class="my-word-body" id="my-word-body">
 								<textarea name="myword" cols="60" rows="3"></textarea>
 							</div>
 							<div class="my-word-submit">
 								<div class="my-word-to-discuss">
-									<button>发送到讨论</button>
+									<button onclick="sendToDiscuss()">发送到讨论</button>
 								</div>
 								<div class="my-word-to-leave-message">
-									<button>发送到留言</button>
+									<button onclick="sendToMessage()">发送到留言</button>
 								</div>
 							</div>
 						</div>
@@ -258,5 +258,45 @@
 	<!-- BOOTSTRAP SCRIPTS  -->
 	<script th:src="@{/gate/assets/js/bootstrap.js}" src="../static/gate/assets/js/bootstrap.js"></script>
 	<script th:src="@{/js/index-common.js}" src="../static/js/index-common.js"></script>
+	<script th:src="@{/js/common.js}" src="../static/js/common.js"></script>
+	<script>
+		$(function(){
+			$("#socialty-discuss").scrollTop($("#socialty-discuss")[0].scrollHeight);
+		})
+		function sendToDiscuss(){
+			if($("#my-word-body").find("textarea").val() == ''){
+				return;
+			}
+			var curDate = dateToDetaiTime(new Date());
+			$("#socialty-discuss").append(
+				'<div class="discuss-row">'+
+           		'<div class="discuss-row-user">'+
+               		'<img th:src="@{/img/boyandrabbit.jpg}" class="discuss-row-user-pic"></img>'+
+               		'<div class="discuss-row-user-name"><a>滕云飞</a></div>'+
+           		'</div>'+
+           		'<div class="discuss-row-body">'+$("#my-word-body").find("textarea").val()+'</div>'+
+           		'<div class="discuss-row-release-time">'+curDate+'</div>'+
+            	'</div>'+
+            	'<br/>'
+			);
+			$("#socialty-discuss").scrollTop($("#socialty-discuss")[0].scrollHeight);
+			$("#my-word-body").find("textarea").val('');
+		}
+		function sendToMessage(){
+			var curDate = dateToDetaiTime(new Date());
+			var newNode = 
+				'<div class="leave-message-row">'+
+		    		'<div class="leave-message-row-user">'+
+		        		'<img th:src="@{/img/boyandrabbit.jpg}" class="leave-message-row-user-pic"></img>'+
+		        		'<div class="leave-message-row-user-name"><a>滕云飞</a></div>'+
+		    		'</div>'+
+		    		'<div class="leave-message-row-body">'+$("#my-word-body").find("textarea").val()+'</div>'+
+		    		'<div class="leave-message-row-release-time">'+curDate+'<span><a><i class="fa fa-heart-o"></i></a>&nbsp;0</span></div>'+
+		    	'</div>'+
+		    	'<br/>';
+		    $("#leave-message-row-top").after(newNode);
+			$("#my-word-body").find("textarea").val('');
+		}
+	</script>
 </body>
 </html>

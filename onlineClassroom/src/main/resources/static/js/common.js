@@ -36,6 +36,12 @@ function dateToDatetimeLocal(date){
     var datetime = now.getFullYear() + "-" + fix((now.getMonth() + 1), 2) + "-" + fix(now.getDate(), 2) + "T" + fix(now.getHours(), 2) + ":" + fix(now.getMinutes(), 2);
     return datetime;
 }
+function dateToDetaiTime(date){
+	var now = new Date();
+	now.setTime(date);
+	var datetime = now.getFullYear() + "-" + fix((now.getMonth() + 1), 2) + "-" + fix(now.getDate(), 2) + " " + fix(now.getHours(), 2) + ":" + fix(now.getMinutes(), 2)+ ":" + fix(now.getSeconds(), 2);
+	return datetime;
+}
 //datetimeLocal转为Date
 function datetimeLocalToDate(datetime){
 	//将datetime-local转换为Date
