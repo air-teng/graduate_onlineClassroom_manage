@@ -58,7 +58,15 @@
           </li>
           <li class="breadcrumb-item active">Online Classroom</li>
         </ol>
-
+		<div class="card mb-3" th:if="${session.userPermission!=null and session.userPermission.identificationCode ge 2} " id="online_stu_list_div">
+	          <div class="card-header">
+	            <i class="fa fa-desktop"></i>
+	            	在线学生列表
+	          </div>
+	          <div id="online_stu_list" style="margin-top:20px;width:855;height:auto;">
+		           	 
+		       </div>
+	     </div>
         <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">
@@ -68,7 +76,7 @@
 	          <div id="need-to-install" style="display:none;"><h1>本服务需要安装一个插件，如果您已安装，请刷新页面</h1></div>
 	          <div id="too-low-need-to-upgrade" style="display:none;"><h1>本服务需要安装一个插件，您安装的插件版本太低</h1></div>
 	          <div id="login-gate" style="display:none;"><a data-username="123" style="font-size:30px;margin:5em;cursor:pointer;"><i class="fa fa-hand-o-right"></i>进入课堂</a></div>
-	          <div id="login-waiting" style="display:none;"><div style="font-size:20px">登录中...</div><button class="btn btn-default btn-lg" style="font-size:100px" ><i class="fa fa-spinner fa-spin"></i></button></div>
+	          <div id="login-waiting" style="display:none;"><div style="font-size:20px;margin-left:5em;">登录中...</div><button class="btn btn-default btn-lg" style="font-size:100px;margin-left:2em;" ><i class="fa fa-spinner fa-spin"></i></button></div>
 	          <!-- 房间 -->
 	          <div id="room_div" style="display:none;">
 					<div id="room_div_close" style="cursor:pointer"><div id="leaveroom">×关闭</div></div>
@@ -96,44 +104,46 @@
 		           	</div>
 		           	<div>
 		           	</div>
-		           	<div id="screen_share_for_teacher">
-		           	    <div id="room_div_screen">
-		           	       <div id="ScreenShareWindowDiv" style="width:400px;height:300px;margin-left:0;"></div>
-		           	    </div>
-		           	</div>
 			</div>
 	        </div>
           </div>
-          <div class="card mb-3">
+          <div class="card mb-3" id="remote-screen-div" style="display:none;">
 	          <div class="card-header">
 	            <i class="fa fa-desktop"></i>
-	            	屏幕放大
+	            	远程桌面
 	          </div>
-	          <div><button onclick="toMax()">放大</button></div>
+	          <div id="screen_share_for_teacher">
+		           	    <div id="room_div_screen">
+		           	       <div id="ScreenShareWindowDiv" style="width:400px;height:300px;margin-left:0;"></div>
+		           	    </div>
+		       </div>
 	      </div>
-          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+	      <div class="card mb-3"  id="online-interactive">
+	          <div class="card-header">
+	            <i class="fa fa-desktop"></i>
+	            	课堂互动
+	          </div>
+	          <div>
+		          <div id="online-interactive-body-left" th:if="${session.userPermission!=null and session.userPermission.identificationCode lt 2} ">
+			           	 <div class="ask-question"><button onclick="sendInteractiveMsg('ask')">提问</button></div>
+			           	 <div class="answer-question"><button onclick="sendInteractiveMsg('answer')">回答</button></div>
+			           	 <div class="answer-question"><button onclick="sendInteractiveMsg('active')">课堂活动</button></div>
+			       </div>
+		          <div id="online-interactive-body-right">
+		          	<div id="interactive-body-msg">
+		          		
+		          	</div>
+		          	<div id="interactive-body-send">
+		          		<textarea rows="3" cols="50"></textarea><br/>
+		          		<button onclick="sendOnlineMsg()">发送</button>
+		          	</div>
+			       </div>
+		       </div>
+	     </div>
+          <div class="card-footer small text-muted">Online Classroom</div>
         </div>
       </div>
       
-    <div class="modal fade" id="new-teacher-screen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	    <div class="modal-dialog" role="document">
-	      <div class="modal-content">
-	      	<div class="modal-header">
-	          <h4 class="modal-title" id="createModal"><strong>教师桌面</strong></h4>
-	          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-	            <span aria-hidden="true">×</span>
-	          </button>
-	        </div>
-	      	<div id="ScreenShareWindowDiv-maxmium" style="width:100%;height:90%;margin-left:0;"></div>
-	      	<div class="modal-footer">
-	          <button class="btn btn-secondary" onclick="toMin()" type="button" data-dismiss="modal">缩小</button>
-	        </div>
-	      </div>
-    	</div>
-  	</div>
-            	
-      <!-- /.container-fluid -->
-
       <!-- Sticky Footer -->
       <footer class="sticky-footer">
         <div class="container my-auto">

@@ -28,7 +28,64 @@ function OnAnyChatNotifyMessage(dwNotifyMsg, wParam, lParam) {
 
 // 收到文字消息
 function OnAnyChatTextMessage(dwFromUserId, dwToUserId, bSecret, lpMsgBuf, dwLen) {
-	alert("收到文字消息"+lpMsgBuf);
+	if(lpMsgBuf == 'ask' || lpMsgBuf == 'answer' || lpMsgBuf == 'active'){
+		if(/_teacher$/.test(BRAC_GetUserName(mSelfUserId))){
+			if(lpMsgBuf == 'ask'){
+//				$("#student_"+dwFromUserId+"").css({"background":"blue"});
+				var i=1;
+				var timer = setInterval(function(){
+					i++;
+					if(i==20){
+						$("#student_"+dwFromUserId+"").css({"background":"#fff"});
+						clearInterval(timer);
+						return;
+					}
+				    if(i%2==0){
+				    	$("#student_"+dwFromUserId+"").css({"background":"blue"});
+				    } else if(i%2==1){
+				    	$("#student_"+dwFromUserId+"").css({"background":"#fff"});
+				    }
+				},500);
+				$("#student_"+dwFromUserId+"").css({"background":"#fff"});
+			}else if(lpMsgBuf == 'answer'){
+				var i=1;
+				var timer = setInterval(function(){
+					i++;
+					if(i==20){
+						$("#student_"+dwFromUserId+"").css({"background":"#fff"});
+						clearInterval(timer);
+						return;
+					}
+				    if(i%2==0){
+				    	$("#student_"+dwFromUserId+"").css({"background":"red"});
+				    } else if(i%2==1){
+				    	$("#student_"+dwFromUserId+"").css({"background":"#fff"});
+				    }
+				},500);
+			}else if(lpMsgBuf == 'active'){
+				$("#student_"+dwFromUserId+"").css({"background":"green"});
+				var i = 1;
+				var timer = setInterval(function(){
+					i++;
+					if(i==20){
+						$("#student_"+dwFromUserId+"").css({"background":"#fff"});
+						clearInterval(timer);
+					}
+				},500);
+			}
+		}
+		return;
+	}
+	var name = BRAC_GetUserName(dwFromUserId);
+	var curDate = dateToDetaiTime(new Date());
+	$("#interactive-body-msg").append(
+			'<div class="row">'+
+      		'	<div class="row-name">'+name.substr(0,name.indexOf("_teacher"))+':</div>'+
+      		'	<div class="row-msg">'+message+'</div>'+
+      		'	<div class="row-time" style="margin-left:10em;float:right;font-family:Times New Roman;">'+curDate+'</div>'+
+      		'</div>'
+	);
+	$("#interactive-body-msg").scrollTop($("#interactive-body-msg")[0].scrollHeight);
 }
 
 // 收到透明通道传输数据
@@ -103,6 +160,10 @@ function OnAnyChatEnterRoom(dwRoomId, errorcode) {
 	console.log("进入房间回调函数执行，errorcode = "+errorcode);
 	if(errorcode == 0){
 		$("#login-waiting").css({"display":"none"});
+	/*	if(usePermission.identificationCode<2){
+			$("#online-interactive").css({"display":"block"});
+		}*/
+//		$("#online-interactive").css({"display":"block"});
 		$("#room_div").css({"display":"block"});
 		//绑定退出房间点击事件
 		$("#leaveroom").on("click",function(){
@@ -111,9 +172,13 @@ function OnAnyChatEnterRoom(dwRoomId, errorcode) {
 			if(mRefreshVolumeTimer != -1)
 				clearInterval(mRefreshVolumeTimer); // 清除实时音量显示计时器
 			mTargetUserId = -1;
-			$("#online-classroom-body").html(
+			/*$("#online-classroom-body").html(
 					'<div id="login-gate"><a data-username="'+userPermission.name+'_stu" style="font-size:30px;margin:5em;cursor:pointer;"><i class="fa fa-hand-o-right"></i>进入课堂</a></div>'
 			);
+			$("#screen_share_for_teacher").css({"width":"0.1px","height":"0.1px"});
+			$("#ScreenShareWindowDiv").css({"width":"0.1px","height":"0.1px"});
+			$("#remote-screen-div").css({"display":"none"});*/
+			window.location.reload();
 		});
 		//绑定开启或关闭本地音频
 		$("#open-or-close-local-microphone").on("click",function(){
@@ -171,10 +236,13 @@ function OnAnyChatEnterRoom(dwRoomId, errorcode) {
 	    BRAC_SetVideoPos(0, document.getElementById("AnyChatRemoteVideoDiv"), "ANYCHAT_VIDEO_REMOTE");
 		BRAC_SetVideoPosEx(mSelfUserId, document.getElementById("AnyChatLocalVideoDiv"), "AnyChatLocalVideoDiv"+0,0,"");// 设置本地视频显示位置（插件id由自己来定义，主要是通过视频流来唯一识别）
 		if(/_teacher$/.test(BRAC_GetUserName(mSelfUserId))){//老师
-			BRAC_SetVideoPosEx(mSelfUserId, document.getElementById("ScreenShareWindowDiv"), "AnyChatLocalVideoDiv"+1,1,"");// 设置桌面共享显示位置
-			$("#screen_share_for_teacher").css({"display":"none"});
+			BRAC_SetVideoPosEx(0, document.getElementById("ScreenShareWindowDiv"), "AnyChatLocalVideoDiv"+1,1,"");// 设置桌面共享显示位置
+			$("#screen_share_for_teacher").css({"width":"0.1px","height":"0.1px"});
+			$("#ScreenShareWindowDiv").css({"width":"0.1px","height":"0.1px"});
+			$("#remote-screen-div").css({"width":"0.1px","height":"0.1px"});
 		}else{
 			BRAC_SetVideoPosEx(0, document.getElementById("ScreenShareWindowDiv"), "AnyChatLocalVideoDiv"+1,1,"");// 设置桌面共享显示位置(占位置)
+			$("#remote-screen-div").css({"display":"block"});
 		}
 	    //显示音量的变化
 	    mRefreshVolumeTimer = setInterval(function () {
@@ -212,9 +280,9 @@ function OnAnyChatRoomOnlineUser(dwUserCount, dwRoomId) {
 			}
 	    }
 	}else{//老师
-		$("#room_div_close").append(
+		/*$("#room_div_close").append(
 			'<div id="student_online_display" style="margin-top:20px;width:855;height:auto;"></div>'
-		);
+		);*/
 		for(var i=0;i<useridlist.length;i++){
 			addToOrder(useridlist[i]);
 		}

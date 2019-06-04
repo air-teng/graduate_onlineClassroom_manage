@@ -110,6 +110,7 @@ function bondClickOnMainPage(){
 					'<div id="login-gate"><a data-username="'+userPermission.name+'_stu" style="font-size:30px;margin:5em;cursor:pointer;"><i class="fa fa-hand-o-right"></i>进入课堂</a></div>'
 			);
 		}
+		window.location.reload();
 	})
 	
 	
@@ -213,30 +214,30 @@ function GetID(id) {
 //将学生的账号名加入名单列表
 function addToOrder(userid){
 	var userName = BRAC_GetUserName(userid);
-	var $obj = $("#student_online_display").find("div:last-child");
+	var $obj = $("#online_stu_list").find("div:last-child");
 	if($obj.length == 0){
-		$("#student_online_display").append(
+		$("#online_stu_list").append(
 			'<div></div>'
 		);
 		//关闭所有通话
-		$("#student_online_display").children("div:last-child").append(
-				'<div onmouseover="onmouseoverChange(this)" onmouseout="onmouseoutChange(this)" onclick="CloseOtherUserVideo()"><i class="fa fa-ban"></i></div>'
+		$("#online_stu_list").children("div:last-child").append(
+				'<div onclick="CloseOtherUserVideo()"><i class="fa fa-ban">关闭所有</i></div>'
 		);
-		$("#student_online_display").children("div:last-child").append(
-				'<div id="student_'+userid+'" onmouseover="onmouseoverChange(this)" onmouseout="onmouseoutChange(this)" onclick="RequestOtherUserVideo('+userid+')">'+userName+'</div>'
+		$("#online_stu_list").children("div:last-child").append(
+				'<div id="student_'+userid+'" onclick="RequestOtherUserVideoAndScreen('+userid+')">'+userName.substr(0,userName.lastIndexOf("_stu"))+'</div>'
 		);
 	}else{
-		var count = $("#student_online_display").find("div:last-child").children('div').length;
+		var count = $("#online_stu_list").find("div:last-child").children('div').length;
 		if(count >= 8){
-			$("#student_online_display").append(
+			$("#online_stu_list").append(
 					'<div></div>'
 			);
-			$("#student_online_display").children("div:last-child").append(
-					'<div id="student_'+userid+'" onmouseover="onmouseoverChange(this)" onmouseout="onmouseoutChange(this)" onclick="RequestOtherUserVideo('+userid+')">'+userName+'</div>'
+			$("#online_stu_list").children("div:last-child").children('div').append(
+					'<div id="student_'+userid+'" onclick="RequestOtherUserVideoAndScreen('+userid+')">'+userName.substr(0,userName.lastIndexOf("_stu"))+'</div>'
 			);
 		}else{
-			$("#student_online_display").children("div:last-child").append(
-					'<div id="student_'+userid+'" onmouseover="onmouseoverChange(this)" onmouseout="onmouseoutChange(this)" onclick="RequestOtherUserVideo('+userid+')">'+userName+'</div>'
+			$("#online_stu_list").children("div:last-child").append(
+					'<div id="student_'+userid+'" onclick="RequestOtherUserVideoAndScreen('+userid+')">'+userName.substr(0,userName.lastIndexOf("_stu"))+'</div>'
 			);
 		}
 	}
@@ -252,8 +253,55 @@ function onmouseoutChange(obj){
 	});
 }
 function CloseOtherUserVideo(){
+	if(mTargetUserId==0){
+		return;
+	}
 	reVideoDivSize();
     BRAC_UserCameraControl(mTargetUserId, 0);
     BRAC_UserSpeakControl(mTargetUserId, 0);
+    BRAC_UserCameraControlEx(userid,1,0,0,"");
+//    BRAC_UserCameraControlEx(mSelfUserId,1,1,0,"");//打开自己的桌面共享
+//	BRAC_SetVideoPosEx(mSelfUserId, document.getElementById("ScreenShareWindowDiv"), "AnyChatLocalVideoDiv"+1,1,"");// 请求老师的桌面共享信息
     mTargetUserId = 0;
+}
+function RequestOtherUserVideoAndScreen(userid){
+	RequestOtherUserVideo(userid);
+//	BRAC_UserCameraControlEx(userid,1,1,0,"");//打开学生的桌面共享
+//	BRAC_SetVideoPosEx(userid, document.getElementById("ScreenShareWindowDiv"), "AnyChatLocalVideoDiv"+1,1,"");// 请求老师的桌面共享信息
+	
+}
+//互动内容
+function sendInteractiveMsg(type){
+	BRAC_SendTextMessage(-1,0,type);
+}
+
+function sendOnlineMsg(){
+	var message = $("#interactive-body-send").find("textarea").val();
+	if(!message || message==''){
+		alert("发送框不应为空");
+		return;
+	}
+	var name = BRAC_GetUserName(mSelfUserId);
+	var curDate = dateToDetaiTime(new Date());
+	if(!/_teacher$/.test(BRAC_GetUserName(mSelfUserId))){
+		$("#interactive-body-msg").append(
+				'<div class="row">'+
+	      		'	<div class="row-name">'+name.substr(0,name.indexOf("_teacher"))+':</div>'+
+	      		'	<div class="row-msg">'+message+'</div>'+
+	      		'	<div class="row-time" style="margin-left:10em;float:right;font-family:Times New Roman;">'+curDate+'</div>'+
+	      		'</div>'
+		);
+	}else{
+		$("#interactive-body-msg").append(
+				'<div class="row">'+
+	      		'	<div class="row-name">'+name.substr(0,name.indexOf("_teacher"))+':</div>'+
+	      		'	<div class="row-msg">'+message+'</div>'+
+	      		'	<div class="row-time" style="margin-left:10em;float:right;font-family:Times New Roman;">'+curDate+'</div>'+
+	      		'</div>'
+		);
+	}
+	
+	$("#interactive-body-send").find("textarea").val("");
+	$("#interactive-body-msg").scrollTop($("#interactive-body-msg")[0].scrollHeight);
+	BRAC_SendTextMessage(-1,0,message);
 }
